@@ -1,22 +1,34 @@
 package com.example.demo;
 
-import android.os.Bundle;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import com.example.common.base.BaseActivity;
+import com.example.common.routers.RouterPath;
+import com.example.demo.databinding.ActivityMainBinding;
+import com.therouter.TheRouter;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity<ActivityMainBinding> {
+
+    public MainActivity() {
+        super(R.layout.activity_main);
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+    protected void initData() {
+        super.initData();
+    }
+
+    @Override
+    protected void initView() {
+        super.initView();
+
+        binding.button.setOnClickListener(v -> {
+            Fragment a = TheRouter.build(RouterPath.VIEW).createFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, a)
+                    .addToBackStack(null)
+                    .commit();
         });
     }
 }

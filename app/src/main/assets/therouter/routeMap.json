@@ -1,0 +1,9 @@
+[
+  {
+    "path": "/view",
+    "className": "com.example.demo.view.ViewFragment",
+    "action": "",
+    "description": "自定义View页面",
+    "params": {}
+  }
+]
