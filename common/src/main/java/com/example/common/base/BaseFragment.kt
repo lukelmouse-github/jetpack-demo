@@ -17,8 +17,8 @@ abstract class BaseFragment<B : ViewDataBinding>(@LayoutRes contentLayoutId: Int
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         TheRouter.inject(this)
+        super.onCreate(savedInstanceState)
         LogCat.d(this.javaClass.simpleName + " onCreate")
     }
 

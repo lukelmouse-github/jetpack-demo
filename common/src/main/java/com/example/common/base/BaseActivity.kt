@@ -18,8 +18,8 @@ abstract class BaseActivity<B : ViewDataBinding>(@LayoutRes contentLayoutId: Int
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        TheRouter.inject(this) // 必须放这里，哪些注解才有用。！要比Engine执行的时机早。
         super.onCreate(savedInstanceState)
-        TheRouter.inject(this)
         LogCat.d(this.javaClass.simpleName + " onCreate")
     }
 

@@ -7,6 +7,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Demo" />
+        android:theme="@style/Theme.Demo" >
+
+        <activity
+            android:name=".base.EmptyShellActivity"
+            android:exported="true"/>
+    </application>
 
 </manifest>
