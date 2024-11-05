@@ -15,24 +15,19 @@
         android:gravity="center"
         tools:context=".MainActivity">
 
-        <TextView
-            android:id="@+id/textView"
-            android:textSize="26dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!" />
-
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnView"
             android:textAllCaps="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ViewFragment" />
 
+        <Button
+            android:id="@+id/btnAPI"
+            android:textAllCaps="false"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="APIFragment" />
 
-        <FrameLayout
-            android:id="@+id/fragment_container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
     </LinearLayout>
 </layout>

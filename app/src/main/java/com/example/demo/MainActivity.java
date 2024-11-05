@@ -20,8 +20,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     protected void initView() {
         super.initView();
 
-        binding.button.setOnClickListener(v -> {
+        binding.btnView.setOnClickListener(v -> {
             Router.openFragment(RouterPath.VIEW);
+        });
+
+        binding.btnAPI.setOnClickListener(v -> {
+            Router.openFragment(RouterPath.API);
         });
     }
 }

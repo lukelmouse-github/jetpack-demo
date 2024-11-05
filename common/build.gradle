@@ -77,4 +77,7 @@ dependencies {
     api "com.bytedance.tools.codelocator:codelocator-core:2.0.4"
     // 依赖lancet-all, 则包含所有lancet能力
     debugApi "com.bytedance.tools.codelocator:codelocator-lancet-all:2.0.4"
+
+    // 权限请求框架：https://github.com/getActivity/XXPermissions
+    implementation 'com.github.getActivity:XXPermissions:20.0'
 }

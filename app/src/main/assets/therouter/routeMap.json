@@ -7,6 +7,13 @@
     "params": {}
   },
   {
+    "path": "/api",
+    "className": "com.example.demo.api.APIFragment",
+    "action": "",
+    "description": "API定义页面",
+    "params": {}
+  },
+  {
     "path": "/empty_shell_activity",
     "className": "com.example.common.base.EmptyShellActivity",
     "action": "",
