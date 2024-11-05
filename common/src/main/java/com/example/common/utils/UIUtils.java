@@ -15,6 +15,10 @@ public class UIUtils {
         return dp * density;
     }
 
+    public static int dp2pxInt(float dp) {
+        return (int) dp2px(dp);
+    }
+
     public static float px2dp(float px) {
         float density = getContext().getResources().getDisplayMetrics().density;
         return px / density;
