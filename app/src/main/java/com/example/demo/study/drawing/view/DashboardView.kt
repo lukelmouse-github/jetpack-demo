@@ -4,13 +4,22 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.Path
+import android.graphics.PathDashPathEffect
 import android.graphics.PathMeasure
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
-import com.drake.logcat.LogCat
 import com.example.common.utils.px
+import kotlin.math.cos
+import kotlin.math.sin
 
-val RADIUS = 100f.px
+
+const val OPEN_ANGLE = 120f
+const val MARK = 10
+val RADIUS = 150f.px
+val LENGTH = 120f.px
+val DASH_WIDTH = 2f.px
+val DASH_LENGTH = 5f.px
 class TestView : View {
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
@@ -21,35 +30,50 @@ class TestView : View {
     )
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG) // 抗锯齿，边缘是半透明的，修改了原先的像素，所以默认不开。
+    private val dash = Path()
     private val path = Path()
-    lateinit var pathMeasure: PathMeasure
+    lateinit var pathEffect: PathDashPathEffect
 
+    init {
+        paint.strokeWidth = 3f.px
+        paint.style = Paint.Style.STROKE
+        dash.addRect(0f, 0f, DASH_WIDTH, DASH_LENGTH, Path.Direction.CW)
+    }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-        super.onSizeChanged(w, h, oldw, oldh) // 尺寸改变时调用
+        Log.e("luke", "onSizeChanged")
         path.reset()
-        path.addCircle(width / 2f, height / 2f, RADIUS, Path.Direction.CW)
-        // 方向，填充还是镂空？
-        // clockwise 顺时针
-        // counterclockwise 逆时针
-        path.addRect(width / 2f - RADIUS, height / 2f, width / 2f + RADIUS,
-            height / 2 + 2 * RADIUS, Path.Direction.CW)
-        path.addCircle(width / 2f, height / 2f, RADIUS * 1.5f, Path.Direction.CW)
-
-//        path.fillType = Path.FillType.WINDING // 默认的填充方式，一个方向画圈的，内部都填充，从当前一个点出发射线出去
-        path.fillType = Path.FillType.EVEN_ODD // 镂空优先用这个，不管方向的，如果射出去一个点，就内部，两个点就外部。
-//        path.fillType = Path.FillType.INVERSE_EVEN_ODD // 反规则。
-        pathMeasure = PathMeasure(path, false) // 路径测量长度。
-        LogCat.d("pathMeasure: " + pathMeasure.length)
-
-
-
+        path.addArc(width / 2f - 150f.px, height / 2f - 150f.px, width / 2f + 150f.px, height / 2f + 150f.px,
+            90 + OPEN_ANGLE / 2f, 360 - OPEN_ANGLE)
+        val pathMeasure = PathMeasure(path, false)
+        // 减去一个刻度的宽度，再除。20是20个刻度
+        pathEffect = PathDashPathEffect(dash, (pathMeasure.length - DASH_WIDTH) / 20f, 0f, PathDashPathEffect.Style.ROTATE)
     }
-
 
     override fun onDraw(canvas: Canvas) {
-        super.onDraw(canvas)
-
+        Log.e("luke", "onDraw")
+        // 1. 画圆弧
         canvas.drawPath(path, paint)
+
+        /** android自己把参数搞反了，我也写反把，这个advance和phase
+         * 用这个特效来画，所以这个特效就没了。
+         */
+        paint.pathEffect = pathEffect
+        /**
+         * 所以画两边
+         */
+        // 2. 画刻度
+        canvas.drawPath(path, paint)
+        paint.pathEffect = null
+
+        // 三角函数，画图算算吧，stopX 是余弦，stopY是正弦
+        // 用角度，通过cos算x，y的偏移量。
+        canvas.drawLine(width / 2f, height / 2f,
+            width / 2f + LENGTH * cos(markToRadius(MARK)).toFloat(),
+            height / 2f + LENGTH * sin(markToRadius(MARK)).toFloat(),
+            paint)
     }
+
+    private fun markToRadius(mark: Int) =
+        Math.toRadians((90 + OPEN_ANGLE / 2f + (360 - OPEN_ANGLE) / 20f * mark).toDouble())
 }
