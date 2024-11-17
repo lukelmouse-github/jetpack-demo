@@ -14,6 +14,20 @@
     "params": {}
   },
   {
+    "path": "/study_main/drawing",
+    "className": "com.example.demo.study.drawing.view.DrawingFragment",
+    "action": "",
+    "description": "绘制",
+    "params": {}
+  },
+  {
+    "path": "/study_main",
+    "className": "com.example.demo.study.StudyMainFragment",
+    "action": "",
+    "description": "学习主页",
+    "params": {}
+  },
+  {
     "path": "/api",
     "className": "com.example.demo.api.APIFragment",
     "action": "",
