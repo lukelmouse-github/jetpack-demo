@@ -7,6 +7,13 @@
     "params": {}
   },
   {
+    "path": "/view/custom",
+    "className": "com.example.demo.view.CustomViewFragment",
+    "action": "",
+    "description": "随便看看。。",
+    "params": {}
+  },
+  {
     "path": "/api",
     "className": "com.example.demo.api.APIFragment",
     "action": "",

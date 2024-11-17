@@ -6,12 +6,21 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 
 import com.drake.logcat.LogCat;
 import com.drake.tooltip.ToastKt;
 import com.example.common.base.BaseFragment;
+import com.example.common.routers.Router;
 import com.example.common.routers.RouterPath;
 import com.example.common.utils.UIUtils;
 import com.example.demo.R;
@@ -20,6 +29,8 @@ import com.therouter.router.Route;
 
 @Route(path = RouterPath.VIEW, description = "自定义View页面")
 public class ViewFragment extends BaseFragment<FragmentViewBinding> {
+
+    private Handler handler = new Handler(Looper.getMainLooper());
     public ViewFragment() {
         super(R.layout.fragment_view);
     }
@@ -57,20 +68,28 @@ public class ViewFragment extends BaseFragment<FragmentViewBinding> {
         });
 //        binding.main.addView(customSlider);
 //        transform();
-        float a = 5f; // 浮点数范围最小值
+        float a = -100f; // 浮点数范围最小值
         float b = 95f; // 浮点数范围最大值
         float step = 10f; // 步长
 
         // 确保 (b - a) % step == 0
         int totalSteps = (int) ((b - a) / step);
 
+        binding.buttonCustom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Router.openFragment(RouterPath.CUSTOM_VIEW);
+            }
+        });
+
         binding.seekBar.setMax(100);
-        binding.seekBar.setThumbTintList(ColorStateList.valueOf(Color.RED));
         binding.seekBar.setProgressTintList(ColorStateList.valueOf(Color.BLUE));
         binding.seekBar.setProgressBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
         // 创建自定义Thumb的Bitmap
         int thumbSize = UIUtils.dp2pxInt(40); // Thumb的大小（单位：像素）
-        Bitmap customThumb = Bitmap.createBitmap(thumbSize, thumbSize, Bitmap.Config.ARGB_8888);
+        Bitmap customThumb = Bitmap.createBitmap(thumbSize, thumbSize, Bitmap.Config.RGB_565);
+        customThumb.setHeight(thumbSize);
+        customThumb.setWidth(thumbSize);
         Canvas canvas = new Canvas(customThumb);
         Paint paint = new Paint();
         paint.setColor(Color.parseColor("#FF4081")); // 设置Thumb的颜色
@@ -126,6 +145,8 @@ public class ViewFragment extends BaseFragment<FragmentViewBinding> {
                 LogCat.e("onStopTrackingTouch " + b);
             }
         });
+
+        int MAX_LENGTH = 5;
     }
 
     private void testSlider() {
