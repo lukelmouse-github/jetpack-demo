@@ -14,7 +14,13 @@ import kotlin.math.cos
 import kotlin.math.sin
 
 
-class DashboardView : View {
+private const val OPEN_ANGLE = 120f
+private const val MARK = 10
+private val RADIUS = 150f.px
+private val LENGTH = 120f.px
+private val DASH_WIDTH = 2f.px
+private val DASH_LENGTH = 5f.px
+class PieView : View {
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int) : super(
@@ -22,12 +28,6 @@ class DashboardView : View {
         attrs,
         defStyleAttr
     )
-    private val OPEN_ANGLE = 120f
-    private val MARK = 10
-    private val RADIUS = 150f.px
-    private val LENGTH = 120f.px
-    private val DASH_WIDTH = 2f.px
-    private val DASH_LENGTH = 5f.px
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG) // 抗锯齿，边缘是半透明的，修改了原先的像素，所以默认不开。
     private val dash = Path()
