@@ -1,7 +1,10 @@
 package com.example.common.utils;
 
+import static android.util.TypedValue.COMPLEX_UNIT_DIP;
+
 import android.content.Context;
 import android.text.TextUtils;
+import android.util.TypedValue;
 
 import com.example.common.base.App;
 
@@ -11,8 +14,10 @@ public class UIUtils {
         return App.instance;
     }
     public static float dp2px(float dp) {
-        float density = getContext().getResources().getDisplayMetrics().density;
-        return dp * density;
+        // 换种写法，都一样。
+//        float density = getContext().getResources().getDisplayMetrics().density;
+//        return dp * density;
+        return TypedValue.applyDimension(COMPLEX_UNIT_DIP, dp, getContext().getResources().getDisplayMetrics());
     }
 
     public static int dp2pxInt(float dp) {
