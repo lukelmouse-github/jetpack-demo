@@ -16,7 +16,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     @Override
     protected void initData() {
         super.initData();
-        Router.switchFragment(RouterPath.STUDY_MAIN);
+        Router.switchFragment(RouterPath.STUDY_MAIN_DRAWING);
     }
 
     @Override

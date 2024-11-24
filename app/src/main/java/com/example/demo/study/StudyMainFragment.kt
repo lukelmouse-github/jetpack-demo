@@ -11,8 +11,6 @@ import com.therouter.router.Route
 class StudyMainFragment : BaseFragment<FragmentStudyMainBinding>(R.layout.fragment_study_main) {
     override fun initView() {
         super.initView()
-
-        Router.switchFragment(RouterPath.STUDY_MAIN_DRAWING)
     }
 
     override fun initData() {
