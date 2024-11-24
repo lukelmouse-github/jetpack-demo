@@ -1,7 +1,6 @@
-package com.example.demo.study.drawing.view
+package com.example.demo.study.drawing
 
 import com.example.common.base.BaseFragment
-import com.example.common.routers.Router
 import com.example.common.routers.RouterPath
 import com.example.demo.R
 import com.example.demo.databinding.FragmentStudyMainBinding

@@ -21,6 +21,13 @@
     "params": {}
   },
   {
+    "path": "/study_main/drawing",
+    "className": "com.example.demo.study.drawing.DrawingFragment",
+    "action": "",
+    "description": "绘制",
+    "params": {}
+  },
+  {
     "path": "/study_main",
     "className": "com.example.demo.study.StudyMainFragment",
     "action": "",
