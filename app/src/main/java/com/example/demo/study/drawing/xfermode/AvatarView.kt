@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
+import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffXfermode
@@ -16,6 +17,7 @@ import com.example.demo.R
 
 private val IMAGE_WIDTH = 200f.px
 private val IMAGE_PADDING = 20f.px
+private val AVATAR_PADDING = 10f.px
 private val XFETMODE = PorterDuffXfermode(PorterDuff.Mode.SRC_IN) // 看官网文档，这些参数到底是啥意思
 class AvatarView : View {
     constructor(context: Context?) : super(context)
@@ -38,6 +40,12 @@ class AvatarView : View {
         canvas.drawBitmap(getAvatar(IMAGE_WIDTH.toInt()), IMAGE_PADDING, IMAGE_PADDING, paint)
         paint.xfermode = null // 恢复一下，好习惯
         canvas.restoreToCount(count)
+
+        paint.color = Color.BLACK
+        paint.strokeWidth = 10f
+        paint.style = Paint.Style.STROKE
+        canvas.drawOval(IMAGE_PADDING, IMAGE_PADDING,
+            IMAGE_PADDING + IMAGE_WIDTH, IMAGE_PADDING + IMAGE_WIDTH, paint) // 画椭圆
     }
 
     /**
