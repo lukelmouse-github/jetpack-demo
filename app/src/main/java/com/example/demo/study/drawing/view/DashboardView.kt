@@ -9,7 +9,7 @@ import android.graphics.PathMeasure
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
-import com.example.common.utils.px
+import com.example.common.utils.dp
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -24,10 +24,10 @@ class DashboardView : View {
     )
     private val OPEN_ANGLE = 120f
     private val MARK = 10
-    private val RADIUS = 150f.px
-    private val LENGTH = 120f.px
-    private val DASH_WIDTH = 2f.px
-    private val DASH_LENGTH = 5f.px
+    private val RADIUS = 150f.dp
+    private val LENGTH = 120f.dp
+    private val DASH_WIDTH = 2f.dp
+    private val DASH_LENGTH = 5f.dp
 
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG) // 抗锯齿，边缘是半透明的，修改了原先的像素，所以默认不开。
     private val dash = Path()
@@ -35,7 +35,7 @@ class DashboardView : View {
     lateinit var pathEffect: PathDashPathEffect
 
     init {
-        paint.strokeWidth = 3f.px
+        paint.strokeWidth = 3f.dp
         paint.style = Paint.Style.STROKE
         dash.addRect(0f, 0f, DASH_WIDTH, DASH_LENGTH, Path.Direction.CW)
     }
@@ -43,7 +43,7 @@ class DashboardView : View {
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         Log.e("luke", "onSizeChanged")
         path.reset()
-        path.addArc(width / 2f - 150f.px, height / 2f - 150f.px, width / 2f + 150f.px, height / 2f + 150f.px,
+        path.addArc(width / 2f - 150f.dp, height / 2f - 150f.dp, width / 2f + 150f.dp, height / 2f + 150f.dp,
             90 + OPEN_ANGLE / 2f, 360 - OPEN_ANGLE)
         val pathMeasure = PathMeasure(path, false)
         // 减去一个刻度的宽度，再除。20是20个刻度

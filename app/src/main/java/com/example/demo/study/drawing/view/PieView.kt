@@ -6,15 +6,15 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
-import com.example.common.utils.px
+import com.example.common.utils.dp
 import kotlin.math.cos
 import kotlin.math.sin
 
 
-private val RADIUS = 150f.px
+private val RADIUS = 150f.dp
 private val ANGLES = floatArrayOf(60f, 90f, 150f, 60f)
 private val COLORS = listOf(Color.RED, Color.GREEN, Color.BLUE, Color.YELLOW)
-private val OFFSET_LENGTH = 20f.px
+private val OFFSET_LENGTH = 20f.dp
 class PieView : View {
     constructor(context: Context?) : super(context)
     constructor(context: Context?, attrs: AttributeSet?) : super(context, attrs)

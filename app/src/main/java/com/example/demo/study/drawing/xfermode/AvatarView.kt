@@ -11,13 +11,13 @@ import android.graphics.PorterDuffXfermode
 import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
-import com.example.common.utils.px
+import com.example.common.utils.dp
 import com.example.demo.R
 
 
-private val IMAGE_WIDTH = 200f.px
-private val IMAGE_PADDING = 20f.px
-private val AVATAR_PADDING = 10f.px
+private val IMAGE_WIDTH = 200f.dp
+private val IMAGE_PADDING = 20f.dp
+private val AVATAR_PADDING = 10f.dp
 private val XFETMODE = PorterDuffXfermode(PorterDuff.Mode.SRC_IN) // 看官网文档，这些参数到底是啥意思
 class AvatarView : View {
     constructor(context: Context?) : super(context)
