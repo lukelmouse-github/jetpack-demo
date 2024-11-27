@@ -5,13 +5,11 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.Paint.FontMetrics
-import android.graphics.Rect
-import android.graphics.RectF
-import android.graphics.Typeface
 import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
-import com.bumptech.glide.load.engine.Resource
+import com.drake.logcat.LogCat
 import com.example.common.utils.dp
 import com.example.demo.R
 
@@ -69,5 +67,20 @@ class SportView : View {
          * descent
          * bottom
          */
+
+        // 绘制文字2 顶部贴边
+        paint.textAlign = Paint.Align.LEFT
+        paint.textSize = 100.dp
+        paint.getFontMetrics(fontMetrics)
+        LogCat.d("fontMetrics = ${fontMetrics}")
+        // FontMetrics{top=-339.9, ascent=-300.0, descent=75.0, bottom=64.8, leading=0.0}
+        // 这里减去，是因为ascent是个负数
+        canvas.drawText("abab", 0f, 0 - fontMetrics.ascent, paint)
+
+        // 绘制文字3 贴左边
+        paint.textSize = 15.dp
+        // FontMetrics{top=-339.9, ascent=-300.0, descent=75.0, bottom=64.8, leading=0.0}
+        // 这里减去，是因为ascent是个负数
+        canvas.drawText("abab", 0f, 0 - fontMetrics.ascent, paint)
     }
 }

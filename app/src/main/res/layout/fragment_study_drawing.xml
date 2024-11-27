@@ -14,7 +14,7 @@
         android:gravity="center"
         tools:context=".MainActivity">
 
-        <com.example.demo.study.drawing.textview.SportView
+        <com.example.demo.study.drawing.textview.MultilineTextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
