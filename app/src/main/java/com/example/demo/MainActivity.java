@@ -1,7 +1,5 @@
 package com.example.demo;
 
-import com.drake.logcat.LogCat;
-import com.drake.tooltip.ToastKt;
 import com.example.common.base.BaseActivity;
 import com.example.common.routers.RouterPath;
 import com.example.common.routers.Router;
@@ -16,7 +14,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     @Override
     protected void initData() {
         super.initData();
-        Router.switchFragment(RouterPath.STUDY_MAIN_DRAWING);
+        Router.switchFragment(RouterPath.TEST_RECORDING);
     }
 
     @Override

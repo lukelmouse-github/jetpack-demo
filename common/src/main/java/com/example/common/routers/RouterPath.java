@@ -10,4 +10,8 @@ public class RouterPath {
 
     public static final String STUDY_MAIN = "/study_main";
     public static final String STUDY_MAIN_DRAWING = "/study_main/drawing";
+
+
+    // test
+    public static final String TEST_RECORDING = "/test/recording";
 }
