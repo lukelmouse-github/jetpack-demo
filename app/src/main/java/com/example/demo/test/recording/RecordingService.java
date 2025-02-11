@@ -5,6 +5,7 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.media.AudioFormat;
@@ -12,6 +13,7 @@ import android.media.AudioRecord;
 import android.media.MediaRecorder;
 import android.os.Build;
 import android.os.IBinder;
+import android.os.PowerManager;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -31,11 +33,17 @@ public class RecordingService extends Service {
     private FileOutputStream wavOutputStream;
     private int audioLength = 0;
 
+    private PowerManager.WakeLock wakeLock;
+
     @Override
     public void onCreate() {
         super.onCreate();
         createNotificationChannel();
         startForeground(NOTIFICATION_ID, buildNotification());
+
+        // 初始化 WakeLock
+        PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        wakeLock = powerManager.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "RecordingService::WakeLockTag");
     }
 
     @Override
@@ -45,6 +53,11 @@ public class RecordingService extends Service {
     }
 
     private void startRecording() {
+        // 获取 WakeLock
+        if (!wakeLock.isHeld()) {
+            wakeLock.acquire();
+        }
+
         // 配置 AudioRecord 参数
         int sampleRate = 44100;
         int channelConfig = AudioFormat.CHANNEL_IN_MONO;
@@ -52,18 +65,11 @@ public class RecordingService extends Service {
         int bufferSize = AudioRecord.getMinBufferSize(sampleRate, channelConfig, audioFormat);
 
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
             return;
         }
 
         // 创建 WAV 输出文件
-        File outputFile = new File(getExternalFilesDir(null), "recording.wav");
+        outputFile = new File(getExternalFilesDir(null), "recording.wav");
 
         try {
             wavOutputStream = new FileOutputStream(outputFile);
@@ -112,6 +118,10 @@ public class RecordingService extends Service {
     public void onDestroy() {
         super.onDestroy();
         stopRecording();
+        // 释放 WakeLock
+        if (wakeLock.isHeld()) {
+            wakeLock.release();
+        }
     }
 
     private void stopRecording() {
