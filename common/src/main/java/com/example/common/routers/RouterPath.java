@@ -14,4 +14,5 @@ public class RouterPath {
 
     // test
     public static final String TEST_RECORDING = "/test/recording";
+    public static final String TEST_CAMERA = "/test/camera";
 }

@@ -21,6 +21,20 @@
     "params": {}
   },
   {
+    "path": "/test/camera",
+    "className": "com.example.demo.test.camera.CameraFragment",
+    "action": "",
+    "description": "学习主页",
+    "params": {}
+  },
+  {
+    "path": "/test/camera",
+    "className": "com.example.demo.test.camera.CameraFragment",
+    "action": "",
+    "description": "相机测试",
+    "params": {}
+  },
+  {
     "path": "/study_main/drawing",
     "className": "com.example.demo.study.drawing.view.DrawingFragment",
     "action": "",
