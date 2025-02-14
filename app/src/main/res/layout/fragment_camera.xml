@@ -21,8 +21,8 @@
             android:layout_margin="8dp"
             android:background="@android:color/black"
             android:padding="1dp"
+            app:layout_constraintDimensionRatio="H,16:9"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/status_text"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
@@ -33,77 +33,128 @@
 
         </FrameLayout>
 
-        <TextView
-            android:id="@+id/status_text"
+        <ScrollView
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="8dp"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="16sp"
-            android:padding="8dp"
-            app:layout_constraintBottom_toTopOf="@id/buttons_container"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            tools:text="录制状态" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/buttons_container"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:padding="8dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintTop_toBottomOf="@id/camera_preview_container"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-            <Button
-                android:id="@+id/btn_start_recording"
-                style="@style/CameraButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="开始录像"
-                android:backgroundTint="#4CAF50"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/btn_pause_recording"
-                app:layout_constraintHorizontal_chainStyle="spread_inside" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/btn_pause_recording"
-                style="@style/CameraButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="暂停录像"
-                android:backgroundTint="#FF9800"
-                app:layout_constraintTop_toTopOf="@id/btn_start_recording"
-                app:layout_constraintStart_toEndOf="@id/btn_start_recording"
-                app:layout_constraintEnd_toStartOf="@id/btn_set_zoom" />
+                <TextView
+                    android:id="@+id/status_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="8dp"
+                    android:textAlignment="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:padding="8dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:text="录制状态" />
 
-            <Button
-                android:id="@+id/btn_set_zoom"
-                style="@style/CameraButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="恢复缩放"
-                android:backgroundTint="#2196F3"
-                app:layout_constraintTop_toTopOf="@id/btn_start_recording"
-                app:layout_constraintStart_toEndOf="@id/btn_pause_recording"
-                app:layout_constraintEnd_toStartOf="@id/btn_preview_video" />
+                <LinearLayout
+                    android:id="@+id/buttons_container"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/status_text"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
 
+                    <Button
+                        android:id="@+id/btn_start_recording"
+                        style="@style/CameraButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="开始录像"
+                        android:backgroundTint="#4CAF50" />
 
-            <Button
-                android:id="@+id/btn_preview_video"
-                style="@style/CameraButton"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="预览视频"
-                android:backgroundTint="#9C27B0"
-                app:layout_constraintTop_toTopOf="@id/btn_start_recording"
-                app:layout_constraintStart_toEndOf="@id/btn_set_zoom"
-                app:layout_constraintEnd_toEndOf="parent" />
+                    <Button
+                        android:id="@+id/btn_pause_recording"
+                        style="@style/CameraButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="暂停录像"
+                        android:backgroundTint="#FF9800" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    <Button
+                        android:id="@+id/btn_set_zoom"
+                        style="@style/CameraButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="设置最大缩放"
+                        android:backgroundTint="#2196F3" />
+
+                    <Button
+                        android:id="@+id/btn_preview_video"
+                        style="@style/CameraButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="预览视频"
+                        android:backgroundTint="#9C27B0" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/new_buttons_container"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="8dp"
+                    app:layout_constraintTop_toBottomOf="@id/buttons_container"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <Button
+                        android:id="@+id/btn_max_zoom"
+                        style="@style/CameraButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="最大放大"
+                        android:backgroundTint="#FF4081" />
+
+                    <Button
+                        android:id="@+id/btn_take_photo"
+                        style="@style/CameraButton"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="拍照"
+                        android:backgroundTint="#00BCD4" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/black_blocks_container"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/new_buttons_container"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent">
+
+                    <!-- 黑色方块将在代码中动态添加 -->
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
