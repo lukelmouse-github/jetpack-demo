@@ -1,8 +1,8 @@
 package com.example.demo;
 
 import com.example.common.base.BaseActivity;
-import com.example.common.routers.RouterPath;
 import com.example.common.routers.Router;
+import com.example.common.routers.RouterPath;
 import com.example.demo.databinding.ActivityMainBinding;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding> {
@@ -14,7 +14,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     @Override
     protected void initData() {
         super.initData();
-        Router.switchFragment(RouterPath.TEST_CAMERA);
+//        Router.switchFragment(RouterPath.TEST_CAMERA);
     }
 
     @Override
