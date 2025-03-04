@@ -35,6 +35,13 @@
     "params": {}
   },
   {
+    "path": "/study_main/layout",
+    "className": "com.example.demo.study.view.LayoutFragment",
+    "action": "",
+    "description": "布局",
+    "params": {}
+  },
+  {
     "path": "/study_main/drawing",
     "className": "com.example.demo.study.drawing.view.DrawingFragment",
     "action": "",
