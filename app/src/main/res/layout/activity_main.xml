@@ -14,6 +14,13 @@
         android:gravity="center"
         tools:context=".MainActivity">
 
+        <com.example.demo.CustomEditText
+            android:id="@+id/customEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="输入文字测试回调"
+            android:layout_marginBottom="16dp"/>
+
         <Button
             android:id="@+id/btnView"
             android:textAllCaps="false"
@@ -22,14 +29,7 @@
             android:text="ViewFragment" />
 
         <Button
-            android:id="@+id/btnAPI"
-            android:textAllCaps="false"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="APIFragment" />
-
-        <Button
-            android:id="@+id/btnStudy"
+            android:id="@+id/btnGetCurrentOrientation"
             android:textAllCaps="false"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

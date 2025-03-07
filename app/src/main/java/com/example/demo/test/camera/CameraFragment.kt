@@ -56,6 +56,59 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
         }
     }
 
+    // 1. 检查变焦参数
+    private fun checkZoomParameters() {
+        camParams?.let { params ->
+            // 打印变焦能力
+            LogCat.d("Zoom Supported: ${params.isZoomSupported}")
+            LogCat.d("Max Zoom: ${params.maxZoom}")
+            LogCat.d("Current Zoom: ${params.zoom}")
+
+            // 获取缩放区域
+            val zoomRatios = params.zoomRatios // 获取所有支持的缩放比例
+            val currentZoomValue = zoomRatios?.get(params.zoom) // 获取当前缩放比例
+            LogCat.d("Current Zoom Ratio: ${currentZoomValue?.div(100f)}x") // 转换为实际倍数
+            LogCat.d("zoomRatios: ${zoomRatios.toList().toString()}")
+        }
+    }
+
+    // 添加一个方法来模拟 Camera2 API 中的 cropRegion 计算
+    private fun calculateApproximateCropRegion() {
+        camParams?.let { params ->
+            if (params.isZoomSupported) {
+                val zoomRatios = params.zoomRatios
+                val currentZoom = params.zoom
+                val currentZoomRatio = zoomRatios?.get(currentZoom)?.div(100f) ?: 1f
+
+                // 获取预览尺寸
+                val previewSize = params.previewSize
+                val previewWidth = previewSize.width
+                val previewHeight = previewSize.height
+
+                // 计算裁剪区域（这只是一个近似值）
+                val cropWidth = (previewWidth / currentZoomRatio).toInt()
+                val cropHeight = (previewHeight / currentZoomRatio).toInt()
+                val cropX = (previewWidth - cropWidth) / 2
+                val cropY = (previewHeight - cropHeight) / 2
+
+                LogCat.d("Approximate crop region: x=$cropX, y=$cropY, width=$cropWidth, height=$cropHeight")
+                LogCat.d("Original preview size: width=$previewWidth, height=$previewHeight")
+            }
+        }
+    }
+
+    // 2. 检查相机信息
+    private fun checkCameraInfo() {
+        val numberOfCameras = Camera.getNumberOfCameras()
+        for (i in 0 until numberOfCameras) {
+            val info = Camera.CameraInfo()
+            Camera.getCameraInfo(i, info)
+            LogCat.d("Camera $i info:")
+            LogCat.d("Facing: ${if (info.facing == Camera.CameraInfo.CAMERA_FACING_BACK) "Back" else "Front"}")
+            LogCat.d("Orientation: ${info.orientation}")
+        }
+    }
+
     override fun initView() {
         binding.apply {
             cameraPreview.holder.addCallback(this@CameraFragment)
@@ -124,6 +177,10 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
             camera?.parameters = camParams
             camera?.startPreview()
             updateUIState()
+
+//            checkZoomParameters()
+//            checkCameraInfo()
+//            calculateApproximateCropRegion()
         } catch (e: IOException) {
             Log.e(TAG, "设置相机预览失败", e)
             showError("设置相机预览失败: ${e.message}")
@@ -249,6 +306,11 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
 
             handler.postDelayed({
                 setMaxZoom()
+
+
+                checkZoomParameters()
+                checkCameraInfo()
+                calculateApproximateCropRegion()
             }, 1000)
 
             handler.postDelayed({
