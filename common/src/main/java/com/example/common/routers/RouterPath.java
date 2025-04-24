@@ -9,6 +9,7 @@ public class RouterPath {
 
 
     public static final String STUDY_MAIN = "/study_main";
+    public static final String STUDY_EVENT = "/study_event";
     public static final String STUDY_MAIN_DRAWING = "/study_main/drawing";
     public static final String STUDY_MAIN_LAYOUT = "/study_main/layout";
 

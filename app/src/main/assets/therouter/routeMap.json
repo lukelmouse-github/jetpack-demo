@@ -42,6 +42,13 @@
     "params": {}
   },
   {
+    "path": "/study_event",
+    "className": "com.example.demo.study.event.EventMainFragment",
+    "action": "",
+    "description": "事件分发流程",
+    "params": {}
+  },
+  {
     "path": "/study_main/drawing",
     "className": "com.example.demo.study.drawing.view.DrawingFragment",
     "action": "",
