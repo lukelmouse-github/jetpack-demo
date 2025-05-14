@@ -11,3 +11,6 @@ val Float.dp: Float
 
 val Int.dp: Float
     get() = this.toFloat().dp
+
+val Int.dpInt: Int
+    get() = this.dp.toInt()

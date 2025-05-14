@@ -45,11 +45,5 @@ class LayoutStudyView @JvmOverloads constructor(
             View.MeasureSpec.makeMeasureSpec(100, View.MeasureSpec.EXACTLY),
             View.MeasureSpec.makeMeasureSpec(100, View.MeasureSpec.EXACTLY)
         )
-        ALog.e("onMeasure >>>>>>>>")
-        ALog.e("onMeasure width = ${measuredWidth} widthMode = ${getMode(widthMeasureSpec)} widthSize = ${getSize(widthMeasureSpec)} " +
-                "\nheight = ${measuredHeight} heightMode = ${getMode(heightMeasureSpec)} heightSize = ${getSize(heightMeasureSpec)}")
-        // 添加调用栈跟踪
-        ALog.trace()
-        ALog.e("onMeasure <<<<<<<<")
     }
 }
