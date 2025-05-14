@@ -20,8 +20,8 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
-import com.drake.logcat.LogCat
 import com.example.common.base.BaseFragment
+import com.example.common.log.ALog
 import com.example.common.routers.RouterPath
 import com.example.demo.R
 import com.example.demo.databinding.FragmentCameraBinding
@@ -60,15 +60,15 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
     private fun checkZoomParameters() {
         camParams?.let { params ->
             // 打印变焦能力
-            LogCat.d("Zoom Supported: ${params.isZoomSupported}")
-            LogCat.d("Max Zoom: ${params.maxZoom}")
-            LogCat.d("Current Zoom: ${params.zoom}")
+            ALog.d("Zoom Supported: ${params.isZoomSupported}")
+            ALog.d("Max Zoom: ${params.maxZoom}")
+            ALog.d("Current Zoom: ${params.zoom}")
 
             // 获取缩放区域
             val zoomRatios = params.zoomRatios // 获取所有支持的缩放比例
             val currentZoomValue = zoomRatios?.get(params.zoom) // 获取当前缩放比例
-            LogCat.d("Current Zoom Ratio: ${currentZoomValue?.div(100f)}x") // 转换为实际倍数
-            LogCat.d("zoomRatios: ${zoomRatios.toList().toString()}")
+            ALog.d("Current Zoom Ratio: ${currentZoomValue?.div(100f)}x") // 转换为实际倍数
+            ALog.d("zoomRatios: ${zoomRatios.toList().toString()}")
         }
     }
 
@@ -91,8 +91,8 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
                 val cropX = (previewWidth - cropWidth) / 2
                 val cropY = (previewHeight - cropHeight) / 2
 
-                LogCat.d("Approximate crop region: x=$cropX, y=$cropY, width=$cropWidth, height=$cropHeight")
-                LogCat.d("Original preview size: width=$previewWidth, height=$previewHeight")
+                ALog.d("Approximate crop region: x=$cropX, y=$cropY, width=$cropWidth, height=$cropHeight")
+                ALog.d("Original preview size: width=$previewWidth, height=$previewHeight")
             }
         }
     }
@@ -103,9 +103,9 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
         for (i in 0 until numberOfCameras) {
             val info = Camera.CameraInfo()
             Camera.getCameraInfo(i, info)
-            LogCat.d("Camera $i info:")
-            LogCat.d("Facing: ${if (info.facing == Camera.CameraInfo.CAMERA_FACING_BACK) "Back" else "Front"}")
-            LogCat.d("Orientation: ${info.orientation}")
+            ALog.d("Camera $i info:")
+            ALog.d("Facing: ${if (info.facing == Camera.CameraInfo.CAMERA_FACING_BACK) "Back" else "Front"}")
+            ALog.d("Orientation: ${info.orientation}")
         }
     }
 
@@ -160,10 +160,10 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
 //            camParams?.setPreviewSize(320, 240)
 
             camParams?.supportedPreviewSizes?.forEach {
-                LogCat.e("luke supportedPreviewSizes: ${it.width} x ${it.height}")
+                ALog.e("luke supportedPreviewSizes: ${it.width} x ${it.height}")
             }
             camParams?.supportedPictureSizes?.forEach {
-                LogCat.e("luke supportedPictureSizes: ${it.width} x ${it.height}")
+                ALog.e("luke supportedPictureSizes: ${it.width} x ${it.height}")
             }
 //            camParams?.setPictureSize(3008, 2256)
             camParams?.setPreviewSize(320, 240)
@@ -172,7 +172,7 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
             camParams?.setJpegThumbnailSize(0, 0)
             camParams?.setRotation(90)
 
-            LogCat.e("luke camParams 1.33 ?? == " + 320 * 1.0 / 240)
+            ALog.e("luke camParams 1.33 ?? == " + 320 * 1.0 / 240)
 
             camera?.parameters = camParams
             camera?.startPreview()
@@ -280,8 +280,8 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(R.layout.fragment_cam
                 setProfile(profile)
 
 
-                LogCat.e("luke profile ?? == ${profile.videoFrameWidth} , ${profile.videoFrameHeight}")
-                LogCat.e("luke profile ?? == " + profile.videoFrameWidth * 1.0 / profile.videoFrameHeight)
+                ALog.e("luke profile ?? == ${profile.videoFrameWidth} , ${profile.videoFrameHeight}")
+                ALog.e("luke profile ?? == " + profile.videoFrameWidth * 1.0 / profile.videoFrameHeight)
 
                 val optimalSize = getOptimalVideoSize()
                 setVideoSize(optimalSize.width, optimalSize.height)

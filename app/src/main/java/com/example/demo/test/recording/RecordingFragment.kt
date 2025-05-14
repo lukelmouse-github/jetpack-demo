@@ -3,9 +3,9 @@ package com.example.demo.test.recording
 import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Build
-import com.drake.logcat.LogCat
 import com.drake.tooltip.toast
 import com.example.common.base.BaseFragment
+import com.example.common.log.ALog
 import com.example.common.routers.RouterPath
 import com.example.demo.R
 import com.example.demo.databinding.FragmentRecordingTestMainBinding
@@ -111,7 +111,7 @@ class RecordingFragment : BaseFragment<FragmentRecordingTestMainBinding>(R.layou
             }
             toast("正在播放录音")
         } catch (e: Exception) {
-            LogCat.e("播放录音失败: ${e.message}")
+            ALog.e("播放录音失败: ${e.message}")
             toast("播放录音失败: ${e.message}")
         }
     }

@@ -6,7 +6,8 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
-import com.drake.logcat.LogCat;
+import com.example.common.log.ALog;
+
 
 public class MyTextView extends TextView {
     public MyTextView(Context context) {
@@ -37,7 +38,7 @@ public class MyTextView extends TextView {
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
 
-        LogCat.e("MSISlider - MyTextView ******* " +
+        ALog.e("MSISlider - MyTextView ******* " +
                 "Measured Width: " + width +
                 ", Measured Height: " + height +
                 ", widthMode: " + widthMode +
@@ -50,6 +51,6 @@ public class MyTextView extends TextView {
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
 
-        LogCat.e("MSISlider- MyTextView *******" + "left" + left + "top" + top + "right" + right + "bottom" + bottom);
+        ALog.e("MSISlider- MyTextView *******" + "left" + left + "top" + top + "right" + right + "bottom" + bottom);
     }
 }

@@ -9,7 +9,7 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
-import com.drake.logcat.LogCat
+import com.example.common.log.ALog
 import com.example.common.utils.dp
 import com.example.demo.R
 
@@ -72,7 +72,7 @@ class SportView : View {
         paint.textAlign = Paint.Align.LEFT
         paint.textSize = 100.dp
         paint.getFontMetrics(fontMetrics)
-        LogCat.d("fontMetrics = ${fontMetrics}")
+        ALog.d("fontMetrics = ${fontMetrics}")
         // FontMetrics{top=-339.9, ascent=-300.0, descent=75.0, bottom=64.8, leading=0.0}
         // 这里减去，是因为ascent是个负数
         canvas.drawText("abab", 0f, 0 - fontMetrics.ascent, paint)

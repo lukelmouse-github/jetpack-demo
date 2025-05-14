@@ -7,7 +7,7 @@ import android.graphics.Paint;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.drake.logcat.LogCat;
+import com.example.common.log.ALog;
 import com.example.common.utils.UIUtils;
 
 public class CustomSlider extends View {
@@ -189,7 +189,7 @@ public class CustomSlider extends View {
             throw new IllegalArgumentException("滑块大小必须在 12 到 28 之间");
         }
         this.blockSize = UIUtils.dp2px(size);
-        LogCat.e("blockSize: " + blockSize);
+        ALog.e("blockSize: " + blockSize);
         invalidate();
     }
 
