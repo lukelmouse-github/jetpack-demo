@@ -46,6 +46,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     protected void initView() {
         super.initView();
 
+        Router.switchFragment(RouterPath.MEDIA);
+
         binding.btnView.setOnClickListener(v -> {
             Router.openFragment(RouterPath.STUDY_EVENT);
         });

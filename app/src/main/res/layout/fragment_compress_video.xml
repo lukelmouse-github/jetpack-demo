@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/main"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                tools:context=".MainActivity">
+
+                <!-- 选择视频按钮 -->
+                <Button
+                    android:id="@+id/btn_select_video"
+                    android:layout_marginTop="50dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="选择视频"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- 视频预览 -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="原始视频预览"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="#000000">
+
+                    <VideoView
+                        android:id="@+id/video_view_original"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center" />
+
+                    <ImageButton
+                        android:id="@+id/btn_fullscreen_original"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="end|bottom"
+                        android:layout_margin="8dp"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="全屏"
+                        android:src="@android:drawable/ic_menu_view" />
+                </FrameLayout>
+
+                <!-- 视频信息 -->
+                <TextView
+                    android:id="@+id/tv_video_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="视频信息: 未选择视频"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- 压缩参数设置 -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="压缩参数设置"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- 比特率 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="比特率 (Kbps):"
+                        android:layout_marginEnd="8dp" />
+
+                    <EditText
+                        android:id="@+id/et_bitrate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:hint="2000" />
+                </LinearLayout>
+
+                <!-- 帧率 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="帧率 (FPS):"
+                        android:layout_marginEnd="8dp" />
+
+                    <EditText
+                        android:id="@+id/et_fps"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:text="60" />
+                </LinearLayout>
+
+                <!-- 编码格式 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="编码格式:"
+                        android:layout_marginEnd="8dp" />
+
+                    <Spinner
+                        android:id="@+id/spinner_codec"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+                <!-- 宽度 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="宽度 (px):"
+                        android:layout_marginEnd="8dp" />
+
+                    <EditText
+                        android:id="@+id/et_width"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:hint="1280" />
+                </LinearLayout>
+
+                <!-- 高度 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="高度 (px):"
+                        android:layout_marginEnd="8dp" />
+
+                    <EditText
+                        android:id="@+id/et_height"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:hint="720" />
+                </LinearLayout>
+
+                <!-- 压缩按钮 -->
+                <Button
+                    android:id="@+id/btn_compress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="开始压缩"
+                    android:enabled="false"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- 压缩结果 -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="压缩结果"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp" />
+
+                <TextView
+                    android:id="@+id/tv_compress_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="未压缩"
+                    android:layout_marginBottom="16dp" />
+
+                <!-- 压缩后视频预览 -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="压缩后视频预览"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp" />
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="#000000">
+
+                    <VideoView
+                        android:id="@+id/video_view_compressed"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center" />
+
+                    <ImageButton
+                        android:id="@+id/btn_fullscreen_compressed"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="end|bottom"
+                        android:layout_margin="8dp"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="全屏"
+                        android:src="@android:drawable/ic_menu_view" />
+                </FrameLayout>
+
+                <!-- 播放压缩后视频按钮 -->
+                <Button
+                    android:id="@+id/btn_play_compressed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="播放压缩后视频"
+                    android:enabled="false" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- 全屏播放容器 -->
+        <FrameLayout
+            android:id="@+id/fullscreen_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#000000"
+            android:visibility="gone">
+
+            <VideoView
+                android:id="@+id/video_view_fullscreen"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center" />
+
+            <ImageButton
+                android:id="@+id/btn_exit_fullscreen"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="end|top"
+                android:layout_margin="16dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="退出全屏"
+                android:src="@android:drawable/ic_menu_close_clear_cancel" />
+        </FrameLayout>
+    </FrameLayout>
+</layout>

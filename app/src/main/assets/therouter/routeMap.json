@@ -70,6 +70,13 @@
     "params": {}
   },
   {
+    "path": "/media",
+    "className": "com.example.demo.media.CompressVideoFragment",
+    "action": "",
+    "description": "compressVideo自定义参数调研",
+    "params": {}
+  },
+  {
     "path": "/api",
     "className": "com.example.demo.api.APIFragment",
     "action": "",

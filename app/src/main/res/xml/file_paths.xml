@@ -4,4 +4,7 @@
     <external-files-path name="my_videos" path="Movies" />
     <external-files-path name="my_documents" path="Documents" />
     <cache-path name="shared_images" path="images/" />
+    <external-path name="external_files" path="." />
+    <external-path name="external_storage_root" path="/" />
+    <root-path name="root" path="/" />
 </paths>

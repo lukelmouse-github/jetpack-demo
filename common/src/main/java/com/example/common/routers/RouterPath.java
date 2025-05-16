@@ -5,6 +5,7 @@ public class RouterPath {
 
     public static final String CUSTOM_VIEW = "/view/custom";
     public static final String API = "/api";
+    public static final String MEDIA = "/media";
     public static final String EMPTY_SHELL_ACTIVITY = "/empty_shell_activity";
 
 
