@@ -1,7 +1,7 @@
 package com.example.demo.api;
 
-import com.drake.logcat.LogCat;
 import com.example.common.base.BaseFragment;
+import com.example.common.log.ALog;
 import com.example.common.routers.RouterPath;
 import com.example.common.utils.UIUtils;
 import com.example.demo.R;
@@ -72,7 +72,7 @@ public class APIFragment extends BaseFragment<FragmentApiBinding> {
     }
 
     private void showResult(String result) {
-        LogCat.e(result);
+        ALog.e(result);
         binding.tvResult.setText(result);
     }
 

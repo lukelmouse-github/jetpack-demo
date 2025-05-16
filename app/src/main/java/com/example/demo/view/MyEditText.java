@@ -5,7 +5,7 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.widget.EditText;
 
-import com.drake.logcat.LogCat;
+import com.example.common.log.ALog;
 
 public class MyEditText extends EditText {
     public MyEditText(Context context) {
@@ -28,17 +28,17 @@ public class MyEditText extends EditText {
 
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        LogCat.e("onDetachedFromWindow");
+        ALog.e("onDetachedFromWindow");
     }
 
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        LogCat.e("onAttachedToWindow");
+        ALog.e("onAttachedToWindow");
     }
 
     @Override
     protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
         super.onFocusChanged(focused, direction, previouslyFocusedRect);
-        LogCat.e(this.toString() + " onFocusChanged: " + focused);
+        ALog.e(this.toString() + " onFocusChanged: " + focused);
     }
 }

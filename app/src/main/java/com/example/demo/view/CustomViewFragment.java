@@ -6,12 +6,8 @@ import android.os.Looper;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.SearchView;
-import android.widget.SeekBar;
-import android.widget.TextView;
-
-import com.drake.logcat.LogCat;
 import com.example.common.base.BaseFragment;
+import com.example.common.log.ALog;
 import com.example.common.routers.RouterPath;
 import com.example.demo.R;
 import com.example.demo.databinding.FragmentCustomViewBinding;
@@ -66,7 +62,7 @@ public class CustomViewFragment extends BaseFragment<FragmentCustomViewBinding> 
                 // 里可以获取新的尺寸和位置
                 int width = right - left;
                 int height = bottom - top;
-                LogCat.d("Container size changed: " + width + "x" + height);
+                ALog.d("Container size changed: " + width + "x" + height);
             }
         });
 
@@ -76,7 +72,7 @@ public class CustomViewFragment extends BaseFragment<FragmentCustomViewBinding> 
             public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
                 int width = i2 - i;
                 int height = i3 - i1;
-                LogCat.d("SeekBar size changed: " + width + "x" + height);
+                ALog.d("SeekBar size changed: " + width + "x" + height);
             }
         });
         textView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
@@ -86,7 +82,7 @@ public class CustomViewFragment extends BaseFragment<FragmentCustomViewBinding> 
                 // 这里可以获取新的尺寸和位置
                 int width = right - left;
                 int height = bottom - top;
-                LogCat.d("textView size changed: " + width + "x" + height);
+                ALog.d("textView size changed: " + width + "x" + height);
             }
         });
     }

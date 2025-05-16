@@ -23,7 +23,6 @@ import android.text.style.StyleSpan;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.MediaController;
 import android.widget.Toast;
@@ -33,8 +32,6 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
@@ -138,45 +135,8 @@ public class CompressVideoFragment extends BaseFragment<FragmentCompressVideoBin
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        hideActionBar();
         initView();
         setupFullscreenControls();
-    }
-
-    /**
-     * 隐藏ActionBar（标题栏）
-     */
-    private void hideActionBar() {
-        if (getActivity() instanceof AppCompatActivity) {
-            ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-            if (actionBar != null) {
-                actionBar.hide();
-            }
-        }
-
-        // 设置全屏模式（可选）
-        if (getActivity() != null) {
-            getActivity().getWindow().setFlags(
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        }
-    }
-
-    /**
-     * 恢复ActionBar（标题栏）
-     */
-    private void showActionBar() {
-        if (getActivity() instanceof AppCompatActivity) {
-            ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
-            if (actionBar != null) {
-                actionBar.show();
-            }
-        }
-
-        // 取消全屏模式（可选）
-        if (getActivity() != null) {
-            getActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        }
     }
 
     @Override
@@ -646,8 +606,6 @@ public class CompressVideoFragment extends BaseFragment<FragmentCompressVideoBin
     @Override
     public void onDestroy() {
         super.onDestroy();
-        // 恢复ActionBar
-        showActionBar();
         if (executorService != null) {
             executorService.shutdown();
         }
@@ -671,8 +629,6 @@ public class CompressVideoFragment extends BaseFragment<FragmentCompressVideoBin
     @Override
     public void onResume() {
         super.onResume();
-        // 确保ActionBar隐藏
-        hideActionBar();
         // 如果是全屏状态，恢复全屏视频播放
         if (isFullscreen && !binding.videoViewFullscreen.isPlaying()) {
             binding.videoViewFullscreen.start();

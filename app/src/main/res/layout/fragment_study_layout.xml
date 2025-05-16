@@ -12,14 +12,14 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        android:background="@color/debug_kit_background_light"
         tools:context=".MainActivity">
 
-        <com.example.demo.study.view.LayoutStudyView
+        <com.example.demo.study.view.SquareImageView
             android:id="@+id/layoutStudyView"
-            android:layout_width="wrap_content"
-            android:background="@color/black"
-            android:layout_height="300dp"/>
+            android:layout_height="400dp"
+            android:scaleType="centerCrop"
+            android:layout_width="300dp"
+            android:src="@drawable/avatar"/>
 
 
     </LinearLayout>

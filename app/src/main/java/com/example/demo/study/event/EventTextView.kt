@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
 import androidx.appcompat.widget.AppCompatTextView
-import com.drake.logcat.LogCat
+import com.example.common.log.ALog
 
 class EventTextView @JvmOverloads constructor(
     context: Context,
@@ -20,7 +20,7 @@ class EventTextView @JvmOverloads constructor(
             MotionEvent.ACTION_CANCEL -> "ACTION_CANCEL"
             else -> "OTHER"
         }
-        LogCat.e("EventTextView [${text}] dispatchTouchEvent: $action")
+        ALog.e("EventTextView [${text}] dispatchTouchEvent: $action")
         return super.dispatchTouchEvent(event)
     }
 
@@ -32,7 +32,7 @@ class EventTextView @JvmOverloads constructor(
             MotionEvent.ACTION_CANCEL -> "ACTION_CANCEL"
             else -> "OTHER"
         }
-        LogCat.e("EventTextView [${text}] onTouchEvent: $action")
+        ALog.e("EventTextView [${text}] onTouchEvent: $action")
         return super.onTouchEvent(event)
     }
 }

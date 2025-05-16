@@ -4,53 +4,53 @@ import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
 import com.drake.engine.base.EngineActivity
-import com.drake.logcat.LogCat
+import com.example.common.log.ALog
 import com.therouter.TheRouter
 
 abstract class BaseActivity<B : ViewDataBinding>(@LayoutRes contentLayoutId: Int = 0) : EngineActivity<B>(contentLayoutId) {
 
     override fun initView() {
-        LogCat.d(this.javaClass.simpleName + " initView")
+        ALog.d("initView ${this.javaClass.simpleName}")
     }
 
     override fun initData() {
-        LogCat.d(this.javaClass.simpleName + " initData")
+        ALog.d("initData ${this.javaClass.simpleName}")
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         TheRouter.inject(this) // 必须放这里，哪些注解才有用。！要比Engine执行的时机早。
         super.onCreate(savedInstanceState)
-        LogCat.d(this.javaClass.simpleName + " onCreate")
+        ALog.d("onCreate ${this.javaClass.simpleName}")
     }
 
     override fun onStop() {
         super.onStop()
-        LogCat.d(this.javaClass.simpleName + " onStop")
+        ALog.d("onStop ${this.javaClass.simpleName}")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        LogCat.d(this.javaClass.simpleName + " onDestroy")
+        ALog.d("onDestroy ${this.javaClass.simpleName}")
     }
 
     override fun onPause() {
         super.onPause()
-        LogCat.d(this.javaClass.simpleName + " onPause")
+        ALog.d("onPause ${this.javaClass.simpleName}")
     }
 
     override fun onStart() {
         super.onStart()
-        LogCat.d(this.javaClass.simpleName + " onStart")
+        ALog.d("onStart ${this.javaClass.simpleName}")
     }
 
     override fun onResume() {
         super.onResume()
-        LogCat.d(this.javaClass.simpleName + " onResume")
+        ALog.d("onResume ${this.javaClass.simpleName}")
     }
 
     override fun onRestart() {
         super.onRestart()
-        LogCat.d(this.javaClass.simpleName + " onRestart")
+        ALog.d("onRestart ${this.javaClass.simpleName}")
     }
 
 }

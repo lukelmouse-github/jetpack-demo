@@ -1,8 +1,8 @@
 package com.example.common.base;
 
-import com.drake.logcat.LogCat;
 import com.example.common.R;
 import com.example.common.databinding.ActivityEmptyShellBinding;
+import com.example.common.log.ALog;
 import com.example.common.routers.RouterPath;
 import com.therouter.router.Autowired;
 import com.therouter.router.Route;
@@ -21,7 +21,7 @@ public class EmptyShellActivity extends BaseActivity<ActivityEmptyShellBinding> 
     protected void initView() {
         super.initView();
         if (fragment == null) {
-            LogCat.e("EmptyShellActivity 的 fragment 为 null 无法跳转");
+            ALog.e("EmptyShellActivity 的 fragment 为 null 无法跳转");
         }
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, fragment)

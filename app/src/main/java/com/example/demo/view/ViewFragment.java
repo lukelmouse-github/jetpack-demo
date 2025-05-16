@@ -17,9 +17,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 
-import com.drake.logcat.LogCat;
 import com.drake.tooltip.ToastKt;
 import com.example.common.base.BaseFragment;
+import com.example.common.log.ALog;
 import com.example.common.routers.Router;
 import com.example.common.routers.RouterPath;
 import com.example.common.utils.UIUtils;
@@ -60,11 +60,11 @@ public class ViewFragment extends BaseFragment<FragmentViewBinding> {
         customSlider.setOnValueChangingListener(value -> {
             // 在滑动过程中更新值
             // 可以在这里做一些实时的更新，比如更新 UI
-            LogCat.e("当前值Changing: " + value);
+            ALog.e("当前值Changing: " + value);
         });
 
         customSlider.setOnValueChangeListener(value -> {
-            LogCat.e("当前值Change: " + value);
+            ALog.e("当前值Change: " + value);
         });
 //        binding.main.addView(customSlider);
 //        transform();
@@ -121,18 +121,18 @@ public class ViewFragment extends BaseFragment<FragmentViewBinding> {
                 // 计算 nearestStepProgress 对应的 SeekBar 进度
                 int nearestStepProgress = Math.round((nearestStepValue - a) / (b - a) * 100);
 
-                LogCat.e("原来的值 i: " + i + " mappedValue: " + mappedValue+ " nearestStepValue: " + nearestStepValue
+                ALog.e("原来的值 i: " + i + " mappedValue: " + mappedValue+ " nearestStepValue: " + nearestStepValue
                 + " nearestStepProgress: " + nearestStepProgress);
                 // 检查是否为步长的正确倍数
                 if (i == nearestStepProgress) {
                     // 更新 UI
 //                        textView.setText(String.format("Mapped Value: %.2f", nearestStepValue));
-                    LogCat.e("Slider updated to: " + nearestStepValue);
+                    ALog.e("Slider updated to: " + nearestStepValue);
                 } else {
                     // 不更新 UI
                     // 重置进度到最近的有效步长倍数
                     seekBar.setProgress(nearestStepProgress);
-//                    LogCat.e("重置了 " + mappedValue);
+//                    ALog.e("重置了 " + mappedValue);
                 }
             }
 
@@ -142,7 +142,7 @@ public class ViewFragment extends BaseFragment<FragmentViewBinding> {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                LogCat.e("onStopTrackingTouch " + b);
+                ALog.e("onStopTrackingTouch " + b);
             }
         });
 

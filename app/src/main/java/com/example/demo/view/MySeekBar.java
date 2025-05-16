@@ -5,7 +5,8 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.SeekBar;
 
-import com.drake.logcat.LogCat;
+import com.example.common.log.ALog;
+
 
 @SuppressLint("AppCompatCustomView")
 public class MySeekBar extends SeekBar {
@@ -37,7 +38,7 @@ public class MySeekBar extends SeekBar {
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
 
-        LogCat.e("MSISlider- MySeekBar <<< " +
+        ALog.e("MSISlider- MySeekBar <<< " +
                 "Measured Width: " + width +
                 ", Measured Height: " + height +
                 ", widthMode: " + widthMode +
@@ -50,6 +51,6 @@ public class MySeekBar extends SeekBar {
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
 
-        LogCat.e("MSISlider- MySeekBar <<< " + "onLayout " + "left" + left + "top" + top + "right" + right + "bottom" + bottom);
+        ALog.e("MSISlider- MySeekBar <<< " + "onLayout " + "left" + left + "top" + top + "right" + right + "bottom" + bottom);
     }
 }

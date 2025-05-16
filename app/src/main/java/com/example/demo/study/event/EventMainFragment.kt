@@ -1,8 +1,8 @@
 package com.example.demo.study.event
 
 import android.view.MotionEvent
-import com.drake.logcat.LogCat
 import com.example.common.base.BaseFragment
+import com.example.common.log.ALog
 import com.example.common.routers.Router
 import com.example.common.routers.RouterPath
 import com.example.demo.R
@@ -29,7 +29,7 @@ class EventMainFragment : BaseFragment<FragmentEventMainBinding>(R.layout.fragme
                 MotionEvent.ACTION_CANCEL -> "ACTION_CANCEL"
                 else -> "OTHER"
             }
-            LogCat.d("EventMainFragment root view onTouch: $action")
+            ALog.d("EventMainFragment root view onTouch: $action")
             false // 返回false表示不消费事件，继续传递
         }
     }

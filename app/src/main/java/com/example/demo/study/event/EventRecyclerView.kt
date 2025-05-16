@@ -4,7 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
 import androidx.recyclerview.widget.RecyclerView
-import com.drake.logcat.LogCat
+import com.example.common.log.ALog
 
 class EventRecyclerView @JvmOverloads constructor(
     context: Context,
@@ -25,7 +25,7 @@ class EventRecyclerView @JvmOverloads constructor(
         val position = child?.let { getChildAdapterPosition(it) } ?: -1
         val itemInfo = if (position >= 0) "item位置: $position" else "未触碰到item"
 
-        LogCat.d("EventRecyclerView dispatchTouchEvent: $action, $itemInfo")
+        ALog.d("EventRecyclerView dispatchTouchEvent: $action, $itemInfo")
         return super.dispatchTouchEvent(ev)
     }
 
@@ -42,7 +42,7 @@ class EventRecyclerView @JvmOverloads constructor(
         val position = child?.let { getChildAdapterPosition(it) } ?: -1
         val itemInfo = if (position >= 0) "item位置: $position" else "未触碰到item"
 
-        LogCat.d("EventRecyclerView onInterceptTouchEvent: $action, $itemInfo")
+        ALog.d("EventRecyclerView onInterceptTouchEvent: $action, $itemInfo")
         return super.onInterceptTouchEvent(e)
     }
 
@@ -59,7 +59,7 @@ class EventRecyclerView @JvmOverloads constructor(
         val position = child?.let { getChildAdapterPosition(it) } ?: -1
         val itemInfo = if (position >= 0) "item位置: $position" else "未触碰到item"
 
-        LogCat.d("EventRecyclerView onTouchEvent: $action, $itemInfo")
+        ALog.d("EventRecyclerView onTouchEvent: $action, $itemInfo")
         return super.onTouchEvent(e)
     }
 }

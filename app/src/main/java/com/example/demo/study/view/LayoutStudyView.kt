@@ -2,11 +2,9 @@ package com.example.demo.study.view
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
-import com.drake.logcat.LogCat
+import com.example.common.log.ALog
 
 class LayoutStudyView @JvmOverloads constructor(
     context: Context,
@@ -17,15 +15,15 @@ class LayoutStudyView @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        LogCat.e("onDraw")
+        ALog.e("onDraw")
 
         // 添加调用栈跟踪
-//        LogCat.e("onDraw Stack trace: ${Exception().stackTraceToString()}")
+//        ALog.e("onDraw Stack trace: ${Exception().stackTraceToString()}")
     }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
         super.onLayout(changed, left, top, right, bottom)
-        LogCat.e("onLayout left = $left top = $top right = $right bottom = $bottom")
+        ALog.e("onLayout left = $left top = $top right = $right bottom = $bottom")
     }
 
     private fun getMode(measureSpec: Int): String {
@@ -42,12 +40,10 @@ class LayoutStudyView @JvmOverloads constructor(
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
-        LogCat.e("onMeasure >>>>>>>>")
-        LogCat.e("onMeasure width = ${measuredWidth} widthMode = ${getMode(widthMeasureSpec)} widthSize = ${getSize(widthMeasureSpec)} " +
-                "\nheight = ${measuredHeight} heightMode = ${getMode(heightMeasureSpec)} heightSize = ${getSize(heightMeasureSpec)}")
-        // 添加调用栈跟踪
-        LogCat.e("onMeasure Stack trace: ${Exception().stackTraceToString()}")
-        LogCat.e("onMeasure <<<<<<<<")
+//        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        setMeasuredDimension(
+            View.MeasureSpec.makeMeasureSpec(100, View.MeasureSpec.EXACTLY),
+            View.MeasureSpec.makeMeasureSpec(100, View.MeasureSpec.EXACTLY)
+        )
     }
 }
