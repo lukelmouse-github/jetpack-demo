@@ -46,10 +46,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     protected void initView() {
         super.initView();
 
-        Router.switchFragment(RouterPath.VIEW);
+        Router.switchFragment(RouterPath.VIEW_STUDY_MAIN);
 
         binding.btnView.setOnClickListener(v -> {
-            Router.openFragment(RouterPath.STUDY_EVENT);
+            Router.switchFragment(RouterPath.VIEW_STUDY_MAIN);
         });
     }
 }

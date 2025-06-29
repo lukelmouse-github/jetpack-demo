@@ -22,9 +22,14 @@ public class ALog {
     private static final int MAX_LOG_LENGTH = 4000;
     private static final Object logLock = new Object();
 
-    public static void d() {
+    public static void dd(String msg) {
         String[] info = getCallerInfo();
-        printLog(Log.DEBUG, "", info);
+        printLog(Log.DEBUG, msg, info, false);
+    }
+
+    public static void dd(String tag, String msg) {
+        String[] info = getCallerInfo();
+        printLog(Log.DEBUG, tag, msg, info, false);
     }
 
     /**
@@ -33,7 +38,7 @@ public class ALog {
      */
     public static void d(String msg) {
         String[] info = getCallerInfo();
-        printLog(Log.DEBUG, msg, info);
+        printLog(Log.DEBUG, msg, info, true);
     }
     /**
      * 输出DEBUG级别日志
@@ -42,7 +47,7 @@ public class ALog {
      */
     public static void d(String tag, String msg) {
         String[] info = getCallerInfo();
-        printLog(Log.DEBUG, tag, msg, info);
+        printLog(Log.DEBUG, tag, msg, info, true);
     }
     /**
      * 输出DEBUG级别日志
@@ -52,7 +57,7 @@ public class ALog {
      */
     public static void d(String tag, String msg, Throwable tr) {
         String[] info = getCallerInfo();
-        printLog(Log.DEBUG, tag, msg + "\n" + Log.getStackTraceString(tr), info);
+        printLog(Log.DEBUG, tag, msg + "\n" + Log.getStackTraceString(tr), info, true);
     }
 
     /**
@@ -67,7 +72,7 @@ public class ALog {
                 msg.append(toString(obj)).append(" ");
             }
         }
-        printLog(Log.DEBUG, msg.toString().trim(), info);
+        printLog(Log.DEBUG, msg.toString().trim(), info, true);
     }
 
     public static void d(String tag, Object... objects) {
@@ -78,15 +83,21 @@ public class ALog {
                 msg.append(toString(obj)).append(" ");
             }
         }
-        printLog(Log.DEBUG, tag, msg.toString().trim(), info);
+        printLog(Log.DEBUG, tag, msg.toString().trim(), info, true);
     }
+
+    public static void ii(String msg) {
+        String[] info = getCallerInfo();
+        printLog(Log.INFO, msg, info, false);
+    }
+
     /**
      * 输出INFO级别日志
      * @param msg 日志内容
      */
     public static void i(String msg) {
         String[] info = getCallerInfo();
-        printLog(Log.INFO, msg, info);
+        printLog(Log.INFO, msg, info, true);
     }
     /**
      * 输出INFO级别日志
@@ -95,7 +106,7 @@ public class ALog {
      */
     public static void i(String tag, String msg) {
         String[] info = getCallerInfo();
-        printLog(Log.INFO, tag, msg, info);
+        printLog(Log.INFO, tag, msg, info, true);
     }
 
     /**
@@ -106,7 +117,7 @@ public class ALog {
      */
     public static void i(String tag, String msg, Throwable tr) {
         String[] info = getCallerInfo();
-        printLog(Log.INFO, tag, msg + "\n" + Log.getStackTraceString(tr), info);
+        printLog(Log.INFO, tag, msg + "\n" + Log.getStackTraceString(tr), info, true);
     }
 
     /**
@@ -121,7 +132,7 @@ public class ALog {
                 msg.append(toString(obj)).append(" ");
             }
         }
-        printLog(Log.INFO, msg.toString().trim(), info);
+        printLog(Log.INFO, msg.toString().trim(), info, true);
     }
 
     public static void i(String tag, Object... objects) {
@@ -132,7 +143,12 @@ public class ALog {
                 msg.append(toString(obj)).append(" ");
             }
         }
-        printLog(Log.INFO, tag, msg.toString().trim(), info);
+        printLog(Log.INFO, tag, msg.toString().trim(), info, true);
+    }
+
+    public static void ww(String msg) {
+        String[] info = getCallerInfo();
+        printLog(Log.WARN, msg, info, false);
     }
 
     /**
@@ -141,7 +157,7 @@ public class ALog {
      */
     public static void w(String msg) {
         String[] info = getCallerInfo();
-        printLog(Log.WARN, msg, info);
+        printLog(Log.WARN, msg, info, true);
     }
     /**
      * 输出WARN级别日志
@@ -150,7 +166,7 @@ public class ALog {
      */
     public static void w(String tag, String msg) {
         String[] info = getCallerInfo();
-        printLog(Log.WARN, tag, msg, info);
+        printLog(Log.WARN, tag, msg, info, true);
     }
     /**
      * 输出WARN级别日志
@@ -160,7 +176,7 @@ public class ALog {
      */
     public static void w(String tag, String msg, Throwable tr) {
         String[] info = getCallerInfo();
-        printLog(Log.WARN, tag, msg + "\n" + Log.getStackTraceString(tr), info);
+        printLog(Log.WARN, tag, msg + "\n" + Log.getStackTraceString(tr), info, true);
     }
     /**
      * 输出DEBUG级别日志，支持多个对象参数
@@ -174,7 +190,7 @@ public class ALog {
                 msg.append(toString(obj)).append(" ");
             }
         }
-        printLog(Log.WARN, msg.toString().trim(), info);
+        printLog(Log.WARN, msg.toString().trim(), info, true);
     }
 
     public static void w(String tag, Object... objects) {
@@ -185,7 +201,7 @@ public class ALog {
                 msg.append(toString(obj)).append(" ");
             }
         }
-        printLog(Log.WARN, tag, msg.toString().trim(), info);
+        printLog(Log.WARN, tag, msg.toString().trim(), info, true);
     }
 
     /**
@@ -194,8 +210,15 @@ public class ALog {
      */
     public static void e(String msg) {
         String[] info = getCallerInfo();
-        printLog(Log.ERROR, msg, info);
+        printLog(Log.ERROR, msg, info, true);
     }
+
+
+    public static void ee(String tag, String msg) {
+        String[] info = getCallerInfo();
+        printLog(Log.ERROR, tag, msg, info, false);
+    }
+
     /**
      * 输出ERROR级别日志
      * @param tag 日志标签
@@ -203,7 +226,7 @@ public class ALog {
      */
     public static void e(String tag, String msg) {
         String[] info = getCallerInfo();
-        printLog(Log.ERROR, tag, msg, info);
+        printLog(Log.ERROR, tag, msg, info, true);
     }
     /**
      * 输出ERROR级别日志
@@ -213,7 +236,7 @@ public class ALog {
      */
     public static void e(String tag, String msg, Throwable tr) {
         String[] info = getCallerInfo();
-        printLog(Log.ERROR, tag, msg + "\n" + Log.getStackTraceString(tr), info);
+        printLog(Log.ERROR, tag, msg + "\n" + Log.getStackTraceString(tr), info, true);
     }
     /**
      * 输出异常日志
@@ -221,7 +244,7 @@ public class ALog {
      */
     public static void e(Throwable tr) {
         String[] info = getCallerInfo();
-        printLog(Log.ERROR, Log.getStackTraceString(tr), info);
+        printLog(Log.ERROR, Log.getStackTraceString(tr), info, true);
     }
     /**
      * 输出异常日志
@@ -230,7 +253,7 @@ public class ALog {
      */
     public static void e(String tag, Throwable tr) {
         String[] info = getCallerInfo();
-        printLog(Log.ERROR, tag, Log.getStackTraceString(tr), info);
+        printLog(Log.ERROR, tag, Log.getStackTraceString(tr), info, true);
     }
 
     /**
@@ -245,7 +268,7 @@ public class ALog {
                 msg.append(toString(obj)).append(" ");
             }
         }
-        printLog(Log.ERROR, msg.toString().trim(), info);
+        printLog(Log.ERROR, msg.toString().trim(), info, true);
     }
 
     public static void e(String tag, Object... objects) {
@@ -256,7 +279,7 @@ public class ALog {
                 msg.append(toString(obj)).append(" ");
             }
         }
-        printLog(Log.ERROR, tag, msg.toString().trim(), info);
+        printLog(Log.ERROR, tag, msg.toString().trim(), info, true);
     }
     /**
      * 记录错误日志并抛出异常
@@ -266,7 +289,7 @@ public class ALog {
      */
     public static void throwException(String msg, Throwable tr) {
         String[] info = getCallerInfo();
-        printLog(Log.ERROR, msg + "\n" + Log.getStackTraceString(tr), info);
+        printLog(Log.ERROR, msg + "\n" + Log.getStackTraceString(tr), info, true);
 
         // 抛出异常
         if (tr instanceof RuntimeException) {
@@ -301,8 +324,8 @@ public class ALog {
         return new String[]{"Unknown", "Unknown", "0"};
     }
 
-    private static void printLog(int priority, String msg, String[] info) {
-        printLog(priority, "", msg, info);
+    private static void printLog(int priority, String msg, String[] info, boolean addCallInfo) {
+        printLog(priority, "", msg, info, addCallInfo);
     }
 
     public static String getProcessName() {
@@ -323,7 +346,7 @@ public class ALog {
      * @param msg 日志内容
      */
     @SuppressLint("DefaultLocale")
-    private static void printLog(int priority, String tag, String msg, String[] info) {
+    private static void printLog(int priority, String tag, String msg, String[] info, boolean addCallInfo) {
         String firstLineTag = "(" + info[0] + ":" + info[2] + ")#" + info[1];
         if (!TextUtils.isEmpty(tag)) {
             firstLineTag = "[" + tag + "]" + firstLineTag;
@@ -332,7 +355,6 @@ public class ALog {
         Thread currentThread = Thread.currentThread();
         String threadName = currentThread.getName();
         long threadId = currentThread.getId();
-        // MSCProcess 获取不到.
         String processName = getProcessName();
         String shortProcessName = "M"; // 默认主进程
         int index = processName.lastIndexOf(":");
@@ -348,26 +370,16 @@ public class ALog {
                  页面路由
                  用户交互
 
-         * mscMiniApp0
-                 默认的小程序渲染进程
-                 WebView渲染
-                 JS执行
-                 TASK进程(1-3):
-         *
-         * // 任务进程
-         * TASK_1(":mscMiniApp1", "1")  // 例如: com.sankuai.meituan:mscMiniApp1
-         * TASK_2(":mscMiniApp2", "2")
-         * TASK_3(":mscMiniApp3", "3")
-             多个小程序并行运行
-             内存隔离
-             进程复用
-
          单个小程序默认用STANDARD进程
          多个小程序同时运行时,会分配到TASK_1、TASK_2等进程
          需要UI交互的部分在MAIN进程
          根据内存占用和性能需求动态分配
          */
-        msg = firstLineTag + String.format("-[%s][Thread:%s-%d]", shortProcessName, threadName, threadId) + " MSC " +"\n" + msg;
+        if (addCallInfo) {
+            msg = firstLineTag + String.format("-[%s][Thread:%s-%d]", shortProcessName, threadName, threadId) +"\n" + msg;
+        } else if (!TextUtils.isEmpty(tag)) {
+            msg = "[" + tag + "]" + " " + msg;
+        }
 
         // 检查消息长度，如果超过最大长度则分行输出
         int length = msg.length();
@@ -410,7 +422,7 @@ public class ALog {
      */
     public static void trace() {
         String[] info = getCallerInfo();
-        printLog(Log.ERROR, getStackTraceString(), info);
+        printLog(Log.ERROR, getStackTraceString(), info, true);
     }
 
     /**
@@ -418,7 +430,7 @@ public class ALog {
      */
     public static void trace(String message) {
         String[] info = getCallerInfo();
-        printLog(Log.ERROR, message + "\n" + getStackTraceString(), info);
+        printLog(Log.ERROR, message + "\n" + getStackTraceString(), info, true);
     }
 
     /**
@@ -428,7 +440,7 @@ public class ALog {
      */
     public static void trace(String tag, String message) {
         String[] info = getCallerInfo();
-        printLog(Log.ERROR, tag, message + "\n" + getStackTraceString(), info);
+        printLog(Log.ERROR, tag, message + "\n" + getStackTraceString(), info, true);
     }
 
     /**

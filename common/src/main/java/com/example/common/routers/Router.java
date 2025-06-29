@@ -17,7 +17,7 @@ public class Router {
     public static void switchFragment(String path) {
         // 自动切换到学习界面。
         ToastKt.toast("自动切换到 " + path + " 界面");
-        ALog.d("自动切换到 " + path + " 界面");
+        ALog.dd("自动切换到 " + path + " 界面");
         openFragment(path);
     }
 }

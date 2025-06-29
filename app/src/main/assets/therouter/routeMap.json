@@ -1,9 +1,58 @@
 [
   {
+    "path": "/view/study_main",
+    "className": "com.example.demo.view.ViewStudyMainFragment",
+    "action": "",
+    "description": "View学习主页面",
+    "params": {}
+  },
+  {
+    "path": "/view",
+    "className": "com.example.demo.view.ViewStudyMainFragment",
+    "action": "",
+    "description": "View学习主页面",
+    "params": {}
+  },
+  {
+    "path": "/view/nested_event",
+    "className": "com.example.demo.view.ViewNestedEventFragment",
+    "action": "",
+    "description": "多层嵌套触摸事件演示",
+    "params": {}
+  },
+  {
+    "path": "/view/lifecycle",
+    "className": "com.example.demo.view.ViewLifecycleFragment",
+    "action": "",
+    "description": "View生命周期演示",
+    "params": {}
+  },
+  {
     "path": "/view",
     "className": "com.example.demo.view.ViewFragment",
     "action": "",
     "description": "自定义View页面",
+    "params": {}
+  },
+  {
+    "path": "/view/event_dispatch",
+    "className": "com.example.demo.view.ViewEventDispatchFragment",
+    "action": "",
+    "description": "触摸事件分发演示",
+    "params": {}
+  },
+  {
+    "path": "/view/basic_measure",
+    "className": "com.example.demo.view.ViewBasicMeasureFragment",
+    "action": "",
+    "description": "View基础测量布局绘制演示",
+    "params": {}
+  },
+  {
+    "path": "/view/advanced_measure",
+    "className": "com.example.demo.view.ViewAdvancedMeasureFragment",
+    "action": "",
+    "description": "View高级测量演示",
     "params": {}
   },
   {
