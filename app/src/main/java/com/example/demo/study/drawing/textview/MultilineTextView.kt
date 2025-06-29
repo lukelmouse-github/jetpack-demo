@@ -25,9 +25,7 @@ class MultilineTextView : View {
 //        textSize = 16.dp
 //    }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-//        val staticLayout = StaticLayout(text, paint, width, Layout.Alignment.ALIGN_NORMAL, 1f, 0f, false)
-//        staticLayout.draw(canvas)
     }
 }

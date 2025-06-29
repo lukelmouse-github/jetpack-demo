@@ -272,8 +272,10 @@ public class CompressVideoFragment extends BaseFragment<FragmentCompressVideoBin
 
     private void showSystemUI() {
         if (getActivity() != null) {
-            getActivity().getWindow().getDecorView().setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
+                getActivity().getWindow().getDecorView().setSystemUiVisibility(
+                        View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            }
         }
     }
 
@@ -340,7 +342,11 @@ public class CompressVideoFragment extends BaseFragment<FragmentCompressVideoBin
                 originalVideoInfo = VideoInfoExtractor.getVideoInfo(requireContext(), uri);
             } catch (Exception e) {
                 // 如果从Uri获取失败，尝试从文件路径获取
-                originalVideoInfo = VideoInfoExtractor.getVideoInfo(selectedVideoPath);
+                try {
+                    originalVideoInfo = VideoInfoExtractor.getVideoInfo(selectedVideoPath);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
 
             mainHandler.post(() -> {

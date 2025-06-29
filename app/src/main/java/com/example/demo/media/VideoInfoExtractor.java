@@ -141,7 +141,7 @@ public class VideoInfoExtractor {
      * @param filePath 视频文件路径
      * @return 视频信息
      */
-    public static VideoInfo getVideoInfo(String filePath) {
+    public static VideoInfo getVideoInfo(String filePath) throws IOException {
         VideoInfo videoInfo = new VideoInfo();
         videoInfo.setFilePath(filePath);
 
@@ -235,7 +235,7 @@ public class VideoInfoExtractor {
      * @param uri     视频Uri
      * @return 视频信息
      */
-    public static VideoInfo getVideoInfo(Context context, Uri uri) {
+    public static VideoInfo getVideoInfo(Context context, Uri uri) throws IOException {
         VideoInfo videoInfo = new VideoInfo();
         videoInfo.setFilePath(uri.toString());
 
