@@ -76,13 +76,6 @@ public class ViewStudyMainFragment extends BaseFragment<FragmentViewStudyMainBin
                 Color.parseColor("#FFF3E0")
         );
 
-        createStudyButton(
-                "5️⃣ 多层嵌套事件分发",
-                "复杂嵌套结构事件处理\n• 3层ViewGroup嵌套演示\n• 中间层事件拦截\n• ACTION_CANCEL产生机制\n• 复杂交互场景分析",
-                RouterPath.VIEW_NESTED_EVENT,
-                Color.parseColor("#FFEBEE")
-        );
-
         // 添加调试提示
         TextView debugTip = new TextView(getContext());
         debugTip.setText("🛠️ 调试技巧\n\n" +

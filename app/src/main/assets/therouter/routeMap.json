@@ -17,6 +17,13 @@
     "path": "/view/nested_event",
     "className": "com.example.demo.view.ViewNestedEventFragment",
     "action": "",
+    "description": "滑动冲突演示",
+    "params": {}
+  },
+  {
+    "path": "/view/nested_event",
+    "className": "com.example.demo.view.ViewNestedEventFragment",
+    "action": "",
     "description": "多层嵌套触摸事件演示",
     "params": {}
   },
