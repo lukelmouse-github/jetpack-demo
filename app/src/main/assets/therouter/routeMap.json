@@ -70,6 +70,55 @@
     "params": {}
   },
   {
+    "path": "/textview/study_main",
+    "className": "com.example.demo.textview.TextViewStudyMainFragment",
+    "action": "",
+    "description": "TextView学习主页面",
+    "params": {}
+  },
+  {
+    "path": "/textview/selection",
+    "className": "com.example.demo.textview.TextViewSelectionFragment",
+    "action": "",
+    "description": "TextView文本选择与编辑机制",
+    "params": {}
+  },
+  {
+    "path": "/textview/render",
+    "className": "com.example.demo.textview.TextViewRenderFragment",
+    "action": "",
+    "description": "TextView文本绘制与渲染原理",
+    "params": {}
+  },
+  {
+    "path": "/textview/performance",
+    "className": "com.example.demo.textview.TextViewPerformanceFragment",
+    "action": "",
+    "description": "TextView性能优化策略",
+    "params": {}
+  },
+  {
+    "path": "/textview/measure",
+    "className": "com.example.demo.textview.TextViewMeasureFragment",
+    "action": "",
+    "description": "TextView文本测量与布局机制",
+    "params": {}
+  },
+  {
+    "path": "/textview/hint",
+    "className": "com.example.demo.textview.TextViewHintFragment",
+    "action": "",
+    "description": "TextView Hint机制深度解析",
+    "params": {}
+  },
+  {
+    "path": "/textview/advanced",
+    "className": "com.example.demo.textview.TextViewAdvancedFragment",
+    "action": "",
+    "description": "TextView高级特性与扩展",
+    "params": {}
+  },
+  {
     "path": "/test/recording",
     "className": "com.example.demo.test.recording.RecordingFragment",
     "action": "",
@@ -80,14 +129,14 @@
     "path": "/test/camera",
     "className": "com.example.demo.test.camera.CameraFragment",
     "action": "",
-    "description": "学习主页",
+    "description": "相机测试",
     "params": {}
   },
   {
     "path": "/test/camera",
     "className": "com.example.demo.test.camera.CameraFragment",
     "action": "",
-    "description": "相机测试",
+    "description": "学习主页",
     "params": {}
   },
   {

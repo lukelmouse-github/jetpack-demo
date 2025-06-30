@@ -1,12 +1,10 @@
 package com.example.demo;
 
-import android.os.Bundle;
-import android.util.Log;
-
 import com.example.common.base.BaseActivity;
 import com.example.common.routers.Router;
 import com.example.common.routers.RouterPath;
 import com.example.demo.databinding.ActivityMainBinding;
+import com.example.demo.route.RoutesAdapter;
 
 public class MainActivity extends BaseActivity<ActivityMainBinding> {
 
@@ -17,27 +15,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        // 设置CustomEditText的监听器
-        binding.customEditText.addTextChangedListener(new android.text.TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Log.d(TAG, "Text changed: " + s);
-            }
-
-            @Override
-            public void afterTextChanged(android.text.Editable s) {
-            }
-        });
-    }
-
-    @Override
     protected void initData() {
         super.initData();
     }
@@ -45,11 +22,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     @Override
     protected void initView() {
         super.initView();
+        binding.rvRoutes.setAdapter(new RoutesAdapter(this));
 
-        Router.switchFragment(RouterPath.VIEW_STUDY_MAIN);
-
-        binding.btnView.setOnClickListener(v -> {
-            Router.switchFragment(RouterPath.VIEW_STUDY_MAIN);
-        });
+        Router.switchFragment(RouterPath.TEXTVIEW_STUDY_MAIN);
     }
 }

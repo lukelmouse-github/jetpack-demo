@@ -62,5 +62,4 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.6.0'
 
     kapt "cn.therouter:apt:$the_router_version"
-
 }
