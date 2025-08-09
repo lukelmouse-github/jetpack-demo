@@ -98,6 +98,13 @@
     "params": {}
   },
   {
+    "path": "/textview/native",
+    "className": "com.example.demo.textview.TextViewNativeFragment",
+    "action": "",
+    "description": "TextView Native自动化",
+    "params": {}
+  },
+  {
     "path": "/textview/measure",
     "className": "com.example.demo.textview.TextViewMeasureFragment",
     "action": "",

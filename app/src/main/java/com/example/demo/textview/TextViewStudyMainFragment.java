@@ -90,6 +90,13 @@ public class TextViewStudyMainFragment extends BaseFragment<FragmentTextviewStud
                 Color.parseColor("#F0F8FF")
         );
 
+        createStudyButton(
+                "7️⃣ Native自动化测试 🆕",
+                "TextView Native自动化演示\n• 多行文本输入框测试\n• 各种参数选择器配置\n• 焦点控制和交互测试\n• 自定义属性验证工具",
+                RouterPath.TEXTVIEW_NATIVE,
+                Color.parseColor("#E8F5E8")
+        );
+
         // 添加调试提示
         TextView debugTip = new TextView(getContext());
         debugTip.setText("🛠️ 调试技巧\n\n" +

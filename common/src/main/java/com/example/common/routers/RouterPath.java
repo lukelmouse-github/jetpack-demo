@@ -31,6 +31,7 @@ public class RouterPath {
     public static final String TEXTVIEW_SELECTION = "/textview/selection";
     public static final String TEXTVIEW_PERFORMANCE = "/textview/performance";
     public static final String TEXTVIEW_ADVANCED = "/textview/advanced";
+    public static final String TEXTVIEW_NATIVE = "/textview/native";
 
     // test
     public static final String TEST_RECORDING = "/test/recording";
