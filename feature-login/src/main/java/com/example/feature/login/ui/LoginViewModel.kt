@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.core.common.base.BaseViewModel
 import com.example.core.common.model.User
 import com.example.core.common.utils.ToastUtils
-import com.example.feature.login.network.NetResult
+import com.example.core.net.model.NetResult
 import com.example.feature.login.repository.LoginRepository
 import kotlinx.coroutines.launch
 

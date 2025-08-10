@@ -44,6 +44,7 @@ dependencies {
 
     // 核心依赖
     implementation project(":core-common")
+    implementation project(":core-net")
 
     // TheRouter依赖注入功能
     kapt "cn.therouter:apt:$the_router_version"

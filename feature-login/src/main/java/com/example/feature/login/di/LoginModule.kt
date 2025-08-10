@@ -12,7 +12,7 @@ val loginModule = module {
 
     // 注册 LoginRepository
     single {
-        LoginRepository(get()) // get() 会自动获取 Retrofit 实例
+        LoginRepository() // 不再需要 Retrofit 参数，直接使用 RetrofitClient
     }
 
     // 注册 LoginViewModel

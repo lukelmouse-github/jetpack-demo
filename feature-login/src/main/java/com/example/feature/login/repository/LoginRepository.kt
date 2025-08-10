@@ -1,16 +1,17 @@
 package com.example.feature.login.repository
 
 import com.example.core.common.model.User
+import com.example.core.net.client.RetrofitClient
+import com.example.core.net.model.NetResult
+import com.example.core.net.repository.BaseRepository
 import com.example.feature.login.api.RequestCenter
-import com.example.feature.login.network.NetResult
-import retrofit2.Retrofit
 
 /**
  * 登录数据仓库
  */
-class LoginRepository(private val retrofit: Retrofit) : BaseRepository() {
+class LoginRepository : BaseRepository() {
 
-    private val api by lazy { retrofit.create(RequestCenter::class.java) }
+    private val api by lazy { RetrofitClient.create<RequestCenter>() }
 
     /**
      * 用户登录

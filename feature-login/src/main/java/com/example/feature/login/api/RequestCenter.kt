@@ -1,7 +1,7 @@
 package com.example.feature.login.api
 
 import com.example.core.common.model.User
-import com.example.feature.login.network.BaseModel
+import com.example.core.net.model.BaseModel
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
