@@ -1,3 +1,4 @@
 rootProject.name='jetpack-demo'
 include ':app'
-include ':common'
+include ':core-common'
+include ':feature-home'

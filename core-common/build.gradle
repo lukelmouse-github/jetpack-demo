@@ -1,0 +1,100 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'kotlinx-serialization'
+}
+
+android {
+    namespace 'com.example.core.common'
+    compileSdk compile_sdk_version
+
+    defaultConfig {
+        minSdk min_sdk_version
+        targetSdk target_sdk_version
+        versionCode version_code
+        versionName version_name
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '11'
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    // 基础 Android 依赖 - 使用 api 让所有模块都能使用
+    api "androidx.core:core-ktx:$androidx_core_version"
+    api "androidx.appcompat:appcompat:$androidx_appcompat_version"
+    api "com.google.android.material:material:$material_version"
+    api "androidx.constraintlayout:constraintlayout:$androidx_constraintlayout_version"
+    api "androidx.legacy:legacy-support-v4:$androidx_legacy_version"
+
+    // Kotlin 相关
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    api "org.jetbrains.kotlinx:kotlinx-serialization-json:$serialization_version"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version"
+    api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+
+    // Jetpack 组件
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    api "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
+    api "androidx.navigation:navigation-fragment-ktx:$navigation_version"
+    api "androidx.navigation:navigation-ui-ktx:$navigation_version"
+    api "androidx.paging:paging-runtime-ktx:$paging_version"
+
+    // 网络相关
+    api "com.squareup.retrofit2:retrofit:$retrofit_version"
+    api "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    api "com.squareup.okhttp3:logging-interceptor:$okhttp_logging_version"
+    api "com.squareup.okhttp3:okhttp:$okhttp_version"
+
+    // JSON 解析 - Moshi
+    api "com.squareup.moshi:moshi:$moshi_version"
+    api "com.squareup.moshi:moshi-kotlin:$moshi_version"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+
+    // 路由框架 - TheRouter
+    api "cn.therouter:router:$the_router_version"
+    kapt "cn.therouter:apt:$the_router_version"
+
+    // 依赖注入 - Koin
+    api "org.koin:koin-androidx-scope:$koin_version"
+    api "org.koin:koin-androidx-viewmodel:$koin_version"
+    api "org.koin:koin-androidx-fragment:$koin_version"
+
+    // 数据存储
+    api "com.tencent:mmkv-static:$mmkv_version"
+
+    // 图片加载
+    api "com.github.bumptech.glide:glide:$glide_version"
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
+
+    // 权限请求
+    api "com.github.getActivity:XXPermissions:$xxpermissions_version"
+
+    // 调试工具
+    api "com.bytedance.tools.codelocator:codelocator-core:$codelocator_version"
+    debugApi "com.bytedance.tools.codelocator:codelocator-lancet-all:$codelocator_version"
+
+    // 测试依赖
+    testImplementation "junit:junit:$junit_version"
+    androidTestImplementation "androidx.test.ext:junit:$androidx_junit_version"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+}
