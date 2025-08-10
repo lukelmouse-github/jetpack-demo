@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
     </data>
 
-    <LinearLayout
-        android:id="@+id/container"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:gravity="center"
         android:fitsSystemWindows="true"
-        android:padding="16dp">
+        tools:context=".ui.main.MainActivity">
 
-        <Button
-            android:id="@+id/tv_test"
-            android:layout_width="wrap_content"
+        <!-- Fragment 容器 -->
+        <FrameLayout
+            android:id="@+id/nav_host_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/nav_view" />
+
+        <!-- 底部导航栏 -->
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="测试登录页面"
-            android:textSize="24sp"
-            android:textColor="@android:color/black"
-            android:layout_marginBottom="16dp" />
+            android:layout_alignParentBottom="true"
+            android:background="?android:attr/windowBackground"
+            app:menu="@menu/bottom_nav_menu"
+            app:labelVisibilityMode="labeled"
+            app:itemTextColor="@android:color/black"
+            app:itemIconTint="@android:color/black" />
 
-        <TextView
-            android:id="@+id/tv_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="MainActivity 启动成功！\n顶部 ActionBar 已隐藏"
-            android:textSize="16sp"
-            android:textColor="@android:color/black"
-            android:gravity="center"
-            android:lineSpacingExtra="4dp" />
+    </RelativeLayout>
 
-    </LinearLayout>
 </layout>

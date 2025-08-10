@@ -45,8 +45,11 @@ dependencies {
     // 特定于 app 模块的依赖
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    // kapt 依赖需要在使用的模块中重新声明
+    // TheRouter 路由框架
+    implementation "cn.therouter:router:$the_router_version"
     kapt "cn.therouter:apt:$the_router_version"
+
+    // 其他 kapt 依赖
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
     kapt "com.github.bumptech.glide:compiler:$glide_version"
 

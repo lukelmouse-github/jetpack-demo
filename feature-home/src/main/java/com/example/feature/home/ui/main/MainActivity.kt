@@ -1,59 +1,161 @@
 package com.example.feature.home.ui.main
 
+import androidx.fragment.app.Fragment
 import com.example.core.common.base.BaseActivity
 import com.example.core.common.utils.ALog
 import com.example.feature.home.R
 import com.example.feature.home.databinding.ActivityMainBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+/**
+ * 主Activity - 管理底部Tab导航
+ */
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
     // ✅ 使用 Koin 依赖注入，自动管理生命周期
     override val mViewModel: MainViewModel by viewModel()
 
+    // 当前显示的Fragment
+    private var currentFragment: Fragment? = null
+
+    // Fragment缓存，避免重复创建
+    private val fragmentMap = mutableMapOf<String, Fragment>()
+
     override fun initData() {
-        // 初始化数据
-        ALog.d("luke", "initData")
+        ALog.d("MainActivity", "initData")
     }
 
     override fun initView() {
-        // 初始化视图
-        // 可以观察 ViewModel 中的 LiveData
-        // mViewModel.someData.observe(this) { data ->
-        //     // 处理数据变化
-        // }
-        ALog.d("luke", "initView")
+        ALog.d("MainActivity", "initView")
 
-        // 演示登录功能（点击测试按钮启动登录页面）
-        setupLoginDemo()
+        setupBottomNavigation()
+
+        // 默认显示首页
+        showFragment("/home/fragment")
     }
 
     /**
-     * 设置登录功能演示
+     * 设置底部导航
      */
-    private fun setupLoginDemo() {
-        // 为演示用的TextView添加点击事件
-        mViewBinding.tvTest.setOnClickListener {
-            // 使用LoginServiceWrapper启动登录页面
-            com.example.core.common.service.LoginServiceWrapper.start(this)
-        }
-
-        // 监听用户登录状态变化
-        try {
-            val loginService = com.therouter.TheRouter.get(com.example.core.common.service.LoginService::class.java)
-
-            loginService?.getLiveData()?.observe(this) { user ->
-                if (user != null) {
-                    ALog.d("luke", "用户登录成功: ${user.username}")
-                    // 更新UI显示登录状态
-                    mViewBinding.tvInfo.text = "欢迎, ${user.username}!"
-                } else {
-                    ALog.d("luke", "用户已退出登录")
-                    mViewBinding.tvInfo.text = "点击上方按钮登录"
+    private fun setupBottomNavigation() {
+        mViewBinding.navView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.navigation_home -> {
+                    showFragment("/home/fragment")
+                    true
                 }
+                R.id.navigation_project -> {
+                    showFragment("/project/fragment")
+                    true
+                }
+                R.id.navigation_navi -> {
+                    showFragment("/navigation/fragment")
+                    true
+                }
+                R.id.navigation_tree -> {
+                    showFragment("/tree/fragment")
+                    true
+                }
+                R.id.navigation_mine -> {
+                    showFragment("/mine/fragment")
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    /**
+     * 显示Fragment（使用TheRouter + Fragment缓存机制）
+     */
+    private fun showFragment(path: String) {
+        try {
+            val targetFragment = getOrCreateFragment(path)
+            if (targetFragment != null) {
+                val transaction = supportFragmentManager.beginTransaction()
+
+                // 隐藏当前Fragment
+                currentFragment?.let {
+                    transaction.hide(it)
+                }
+
+                // 如果Fragment已经添加过，则显示；否则添加
+                if (targetFragment.isAdded) {
+                    transaction.show(targetFragment)
+                } else {
+                    transaction.add(R.id.nav_host_fragment, targetFragment, path)
+                }
+
+                transaction.commitAllowingStateLoss()
+                currentFragment = targetFragment
+            } else {
+                ALog.e("MainActivity", "无法创建Fragment: $path")
             }
         } catch (e: Exception) {
-            ALog.e("luke", "登录服务获取失败: ${e.message}")
+            ALog.e("MainActivity", "切换Fragment失败: ${e.message}")
+        }
+    }
+
+    /**
+     * 获取或创建Fragment（缓存机制）
+     */
+    private fun getOrCreateFragment(path: String): Fragment? {
+        // 先从缓存中查找
+        var fragment = fragmentMap[path]
+        if (fragment != null) {
+            return fragment
+        }
+
+        // 从FragmentManager中查找
+        fragment = supportFragmentManager.findFragmentByTag(path)
+        if (fragment != null) {
+            fragmentMap[path] = fragment
+            return fragment
+        }
+
+        // 使用TheRouter创建新Fragment
+        fragment = createFragmentByPath(path)
+        if (fragment != null) {
+            fragmentMap[path] = fragment
+        }
+
+        return fragment
+    }
+
+    /**
+     * 根据路径创建Fragment（目前使用占位Fragment）
+     */
+    private fun createFragmentByPath(path: String): Fragment? {
+        return try {
+            // TODO: 后续使用TheRouter创建真实Fragment
+            // TheRouter.build(path).createFragment() as Fragment
+
+            // 现在先创建占位Fragment
+            createPlaceholderFragment(getTabNameByPath(path))
+        } catch (e: Exception) {
+            ALog.e("MainActivity", "创建Fragment失败: $path, ${e.message}")
+            null
+        }
+    }
+
+    /**
+     * 创建占位Fragment
+     */
+    private fun createPlaceholderFragment(tabName: String): Fragment {
+        return PlaceholderFragment.newInstance(tabName)
+    }
+
+    /**
+     * 根据路径获取Tab名称
+     */
+    private fun getTabNameByPath(path: String): String {
+        return when (path) {
+            "/home/fragment" -> "首页"
+            "/project/fragment" -> "项目"
+            "/navigation/fragment" -> "导航"
+            "/tree/fragment" -> "体系"
+            "/mine/fragment" -> "我的"
+            else -> "未知"
         }
     }
 
