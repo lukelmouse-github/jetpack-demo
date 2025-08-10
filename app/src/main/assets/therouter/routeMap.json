@@ -1,5 +1,12 @@
 [
   {
+    "path": "/home/fragment",
+    "className": "com.example.feature.home.ui.home.HomeFragment",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
     "path": "/view/study_main",
     "className": "com.example.demo.view.ViewStudyMainFragment",
     "action": "",

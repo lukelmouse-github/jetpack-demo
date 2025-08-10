@@ -5,6 +5,7 @@ import com.example.core.common.base.BaseActivity
 import com.example.core.common.utils.ALog
 import com.example.feature.home.R
 import com.example.feature.home.databinding.ActivityMainBinding
+import com.therouter.TheRouter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -123,18 +124,24 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     }
 
     /**
-     * 根据路径创建Fragment（目前使用占位Fragment）
+     * 根据路径创建Fragment
      */
     private fun createFragmentByPath(path: String): Fragment? {
         return try {
-            // TODO: 后续使用TheRouter创建真实Fragment
-            // TheRouter.build(path).createFragment() as Fragment
-
-            // 现在先创建占位Fragment
-            createPlaceholderFragment(getTabNameByPath(path))
+            // 优先使用TheRouter创建真实Fragment
+            @Suppress("UNCHECKED_CAST")
+            val routerFragment = TheRouter.build(path).createFragment() as? Fragment
+            if (routerFragment != null) {
+                ALog.d("MainActivity", "使用TheRouter创建Fragment成功: $path")
+                routerFragment
+            } else {
+                ALog.w("MainActivity", "TheRouter无法创建Fragment，使用占位Fragment: $path")
+                createPlaceholderFragment(getTabNameByPath(path))
+            }
         } catch (e: Exception) {
             ALog.e("MainActivity", "创建Fragment失败: $path, ${e.message}")
-            null
+            // 异常时也使用占位Fragment
+            createPlaceholderFragment(getTabNameByPath(path))
         }
     }
 
