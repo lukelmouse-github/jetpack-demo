@@ -1,0 +1,35 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/luke/Projects/Github/jetpack-demo/feature-login/src/main/AndroidManifest.xml:2:1-12:12
+INJECTED from /Users/luke/Projects/Github/jetpack-demo/feature-login/src/main/AndroidManifest.xml:2:1-12:12
+INJECTED from /Users/luke/Projects/Github/jetpack-demo/feature-login/src/main/AndroidManifest.xml:2:1-12:12
+	package
+		INJECTED from /Users/luke/Projects/Github/jetpack-demo/feature-login/src/main/AndroidManifest.xml
+		ADDED from /Users/luke/Projects/Github/jetpack-demo/feature-login/src/main/AndroidManifest.xml:2:1-12:12
+		INJECTED from /Users/luke/Projects/Github/jetpack-demo/feature-login/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/luke/Projects/Github/jetpack-demo/feature-login/src/main/AndroidManifest.xml:2:11-69
+application
+ADDED from /Users/luke/Projects/Github/jetpack-demo/feature-login/src/main/AndroidManifest.xml:4:5-10:19
+activity#com.example.feature.login.ui.LoginActivity
+ADDED from /Users/luke/Projects/Github/jetpack-demo/feature-login/src/main/AndroidManifest.xml:6:9-9:40
+	android:exported
+		ADDED from /Users/luke/Projects/Github/jetpack-demo/feature-login/src/main/AndroidManifest.xml:9:13-37
+	android:theme
+		ADDED from /Users/luke/Projects/Github/jetpack-demo/feature-login/src/main/AndroidManifest.xml:8:13-53
+	android:name
+		ADDED from /Users/luke/Projects/Github/jetpack-demo/feature-login/src/main/AndroidManifest.xml:7:13-45
+uses-sdk
+INJECTED from /Users/luke/Projects/Github/jetpack-demo/feature-login/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/luke/Projects/Github/jetpack-demo/feature-login/src/main/AndroidManifest.xml
+INJECTED from /Users/luke/Projects/Github/jetpack-demo/feature-login/src/main/AndroidManifest.xml
+INJECTED from /Users/luke/Projects/Github/jetpack-demo/feature-login/src/main/AndroidManifest.xml
+INJECTED from /Users/luke/Projects/Github/jetpack-demo/feature-login/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/luke/Projects/Github/jetpack-demo/feature-login/src/main/AndroidManifest.xml
+		ADDED from /Users/luke/Projects/Github/jetpack-demo/feature-login/src/main/AndroidManifest.xml
+		INJECTED from /Users/luke/Projects/Github/jetpack-demo/feature-login/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/luke/Projects/Github/jetpack-demo/feature-login/src/main/AndroidManifest.xml
+		ADDED from /Users/luke/Projects/Github/jetpack-demo/feature-login/src/main/AndroidManifest.xml
+		INJECTED from /Users/luke/Projects/Github/jetpack-demo/feature-login/src/main/AndroidManifest.xml

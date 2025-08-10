@@ -14,13 +14,12 @@
         android:fitsSystemWindows="true"
         android:padding="16dp">
 
-        <TextView
+        <Button
             android:id="@+id/tv_test"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="测试页面"
+            android:text="测试登录页面"
             android:textSize="24sp"
-            android:textStyle="bold"
             android:textColor="@android:color/black"
             android:layout_marginBottom="16dp" />
 

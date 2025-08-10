@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <!-- 登录页面 -->
+        <activity
+            android:name=".ui.LoginActivity"
+            android:theme="@style/Theme.NoActionBar"
+            android:exported="false" />
+    </application>
+
+</manifest>
+

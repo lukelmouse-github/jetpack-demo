@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.feature.login" >
+
+    <uses-sdk android:minSdkVersion="21" />
+
+    <application>
+
+        <!-- 登录页面 -->
+        <activity
+            android:name="com.example.feature.login.ui.LoginActivity"
+            android:exported="false"
+            android:theme="@style/Theme.NoActionBar" />
+    </application>
+
+</manifest>

@@ -49,6 +49,7 @@ dependencies {
     // 核心依赖 - 通过 core-common 获得所有公共依赖
     implementation project(":core-common")
     implementation project(":feature-home")
+    implementation project(":feature-login")
 
     // 特定于 app 模块的依赖
     implementation fileTree(dir: 'libs', include: ['*.jar'])
