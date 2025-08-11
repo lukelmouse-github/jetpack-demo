@@ -70,16 +70,28 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
      * 设置RecyclerView
      */
     private fun setupRecyclerView() {
-        homeAdapter = HomeAdapter { article ->
-            // 点击文章回调
-            ALog.d("HomeFragment", "点击文章: ${article.title}")
-            // 跳转到WebView页面
-            com.example.core.webview.WebViewActivity.start(
-                requireContext(),
-                article.title,
-                article.link
-            )
-        }
+        homeAdapter = HomeAdapter(
+            onArticleClick = { article ->
+                // 点击文章回调
+                ALog.d("HomeFragment", "点击文章: ${article.title}")
+                // 跳转到WebView页面
+                com.example.core.webview.WebViewActivity.start(
+                    requireContext(),
+                    article.title,
+                    article.link
+                )
+            },
+            onBannerClick = { banner ->
+                // 点击Banner回调
+                ALog.d("HomeFragment", "点击Banner: ${banner.title}")
+                // 跳转到WebView页面
+                com.example.core.webview.WebViewActivity.start(
+                    requireContext(),
+                    banner.title,
+                    banner.url
+                )
+            }
+        )
 
         mViewBinding.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)

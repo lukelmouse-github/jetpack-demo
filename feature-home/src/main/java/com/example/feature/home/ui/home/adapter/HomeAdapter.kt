@@ -11,7 +11,10 @@ import com.example.feature.home.model.Banner
 /**
  * 首页列表适配器
  */
-class HomeAdapter(private val onArticleClick: (Article) -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class HomeAdapter(
+    private val onArticleClick: (Article) -> Unit,
+    private val onBannerClick: (Banner) -> Unit
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         private const val TYPE_BANNER = 0
@@ -61,7 +64,7 @@ class HomeAdapter(private val onArticleClick: (Article) -> Unit) : RecyclerView.
         return when (viewType) {
             TYPE_BANNER -> {
                 val binding = ItemBannerBinding.inflate(inflater, parent, false)
-                BannerViewHolder(binding)
+                BannerViewHolder(binding, onBannerClick)
             }
             else -> {
                 val binding = ItemArticleBinding.inflate(inflater, parent, false)
@@ -92,11 +95,23 @@ class HomeAdapter(private val onArticleClick: (Article) -> Unit) : RecyclerView.
     /**
      * Banner ViewHolder
      */
-    class BannerViewHolder(private val binding: ItemBannerBinding) : RecyclerView.ViewHolder(binding.root) {
+    class BannerViewHolder(
+        private val binding: ItemBannerBinding,
+        private val onBannerClick: (Banner) -> Unit
+    ) : RecyclerView.ViewHolder(binding.root) {
         fun bind(banners: List<Banner>) {
-            // TODO: 实现Banner轮播
-            // 这里先显示Banner数量
-            binding.tvBannerPlaceholder.text = "Banner轮播图 (${banners.size}个)"
+            if (banners.isNotEmpty()) {
+                // 创建Banner适配器
+                val bannerAdapter = HomeBannerAdapter(banners) { banner ->
+                    onBannerClick(banner)
+                }
+
+                // 设置Banner适配器
+                binding.bannerView.setAdapter(bannerAdapter)
+
+                // 开始轮播
+                binding.bannerView.start()
+            }
         }
     }
 
