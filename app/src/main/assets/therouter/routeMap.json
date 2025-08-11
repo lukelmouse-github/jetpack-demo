@@ -1,5 +1,12 @@
 [
   {
+    "path": "/project/fragment",
+    "className": "com.example.feature.home.ui.project.ProjectFragment",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
     "path": "/home/fragment",
     "className": "com.example.feature.home.ui.home.HomeFragment",
     "action": "",
