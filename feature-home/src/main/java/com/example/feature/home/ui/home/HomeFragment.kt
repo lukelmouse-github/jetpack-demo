@@ -73,7 +73,12 @@ class HomeFragment : BaseFragment<HomeViewModel, FragmentHomeBinding>() {
         homeAdapter = HomeAdapter { article ->
             // 点击文章回调
             ALog.d("HomeFragment", "点击文章: ${article.title}")
-            // TODO: 跳转到文章详情页
+            // 跳转到WebView页面
+            com.example.core.webview.WebViewActivity.start(
+                requireContext(),
+                article.title,
+                article.link
+            )
         }
 
         mViewBinding.recyclerView.apply {

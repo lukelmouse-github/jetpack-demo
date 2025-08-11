@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/core-common" />
             <option value="$PROJECT_DIR$/core-net" />
+            <option value="$PROJECT_DIR$/core-webview" />
             <option value="$PROJECT_DIR$/feature-home" />
             <option value="$PROJECT_DIR$/feature-login" />
           </set>

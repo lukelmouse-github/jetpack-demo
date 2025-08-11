@@ -203,6 +203,13 @@
     "params": {}
   },
   {
+    "path": "/webview",
+    "className": "com.example.core.webview.WebViewActivity",
+    "action": "",
+    "description": "WebView页面",
+    "params": {}
+  },
+  {
     "path": "/empty_shell_activity",
     "className": "com.example.common.base.EmptyShellActivity",
     "action": "",
