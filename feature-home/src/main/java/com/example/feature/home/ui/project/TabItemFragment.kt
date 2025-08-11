@@ -19,6 +19,11 @@ class TabItemFragment : BaseFragment<TabItemViewModel, FragmentTabItemBinding>()
     private lateinit var projectAdapter: ProjectAdapter
     private var cid: Int = 0
 
+    // 懒加载相关
+    private var isViewCreated = false
+    private var isDataInitialized = false
+    private var isVisibleToUser = false
+
     companion object {
         private const val ARG_CID = "cid"
 
@@ -32,7 +37,7 @@ class TabItemFragment : BaseFragment<TabItemViewModel, FragmentTabItemBinding>()
     }
 
     override fun initData() {
-        ALog.d("TabItemFragment", "initData")
+        ALog.d("TabItemFragment", "initData - cid: $cid")
 
         // 获取传递的分类ID
         arguments?.let { args ->
@@ -43,8 +48,11 @@ class TabItemFragment : BaseFragment<TabItemViewModel, FragmentTabItemBinding>()
         // 初始化适配器
         setupRecyclerView()
 
-        // 加载数据
-        mViewModel.initData()
+        // 标记数据初始化完成
+        isDataInitialized = true
+
+        // 检查是否可以加载数据
+        checkAndLoadData()
     }
 
     override fun initView() {
@@ -58,6 +66,22 @@ class TabItemFragment : BaseFragment<TabItemViewModel, FragmentTabItemBinding>()
 
         // 观察数据变化
         observeData()
+
+        // 标记视图创建完成
+        isViewCreated = true
+
+        // 检查是否可以加载数据
+        checkAndLoadData()
+    }
+
+    /**
+     * 检查并加载数据（懒加载）
+     */
+    private fun checkAndLoadData() {
+        if (isViewCreated && isDataInitialized && isVisibleToUser) {
+            ALog.d("TabItemFragment", "开始加载数据 - cid: $cid")
+            mViewModel.initData()
+        }
     }
 
     /**
@@ -126,6 +150,23 @@ class TabItemFragment : BaseFragment<TabItemViewModel, FragmentTabItemBinding>()
                 }
             }
         })
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (!isVisibleToUser) {
+            isVisibleToUser = true
+            ALog.d("TabItemFragment", "Fragment变为可见 - cid: $cid")
+            checkAndLoadData()
+        }
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (isVisibleToUser) {
+            isVisibleToUser = false
+            ALog.d("TabItemFragment", "Fragment变为不可见 - cid: $cid")
+        }
     }
 
     override fun getLayoutResId(): Int = R.layout.fragment_tab_item

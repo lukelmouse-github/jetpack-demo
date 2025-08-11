@@ -116,7 +116,8 @@ class ProjectFragment : BaseFragment<ProjectViewModel, FragmentProjectBinding>()
         }
 
         // 设置ViewPager离屏页面限制
-        mViewPager.offscreenPageLimit = ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT
+        // 增加缓存页面数量，提升切换体验
+        mViewPager.offscreenPageLimit = 2
 
         // 关联TabLayout和ViewPager2
         mediator = TabLayoutMediator(

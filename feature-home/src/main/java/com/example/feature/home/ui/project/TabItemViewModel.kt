@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.core.common.base.BaseViewModel
+import com.example.core.common.utils.ALog
 import com.example.core.common.utils.ToastUtils
 import com.example.core.net.model.NetResult
 import com.example.feature.home.model.project.ProjectItemSub
@@ -31,18 +32,49 @@ class TabItemViewModel(private val projectRepository: ProjectRepository) : BaseV
     private var currentCid = 0
     private val allProjects = mutableListOf<ProjectItemSub>()
 
+    // 缓存相关
+    private var isDataLoaded = false // 标记数据是否已加载
+    private var lastLoadTime = 0L    // 最后加载时间
+    private val cacheTimeout = 5 * 60 * 1000L // 5分钟缓存过期时间
+
     /**
      * 设置分类ID
      */
     fun setCid(cid: Int) {
-        currentCid = cid
+        // 如果分类ID变化，重置缓存状态
+        if (currentCid != cid) {
+            currentCid = cid
+            isDataLoaded = false
+            allProjects.clear()
+            _projectList.value = emptyList()
+        }
     }
 
     /**
      * 初始化数据
      */
     fun initData() {
+        // 检查缓存
+        if (shouldUseCache()) {
+            // 使用缓存数据
+            ALog.d("TabItemViewModel", "使用缓存数据 - cid: $currentCid, 数据条数: ${allProjects.size}")
+            _projectList.value = allProjects.toList()
+            return
+        }
+
+        // 缓存失效或无缓存，重新加载
+        ALog.d("TabItemViewModel", "缓存失效，重新加载数据 - cid: $currentCid")
         refreshProjectList()
+    }
+
+    /**
+     * 判断是否应该使用缓存
+     */
+    private fun shouldUseCache(): Boolean {
+        val currentTime = System.currentTimeMillis()
+        return isDataLoaded &&
+               allProjects.isNotEmpty() &&
+               (currentTime - lastLoadTime) < cacheTimeout
     }
 
     /**
@@ -52,6 +84,9 @@ class TabItemViewModel(private val projectRepository: ProjectRepository) : BaseV
         _isRefreshing.value = true
         currentPage = 1
         allProjects.clear()
+
+        // 重置缓存状态，强制重新加载
+        isDataLoaded = false
 
         viewModelScope.launch {
             loadProjectList(currentPage)
@@ -86,6 +121,12 @@ class TabItemViewModel(private val projectRepository: ProjectRepository) : BaseV
                 }
                 allProjects.addAll(result.data.datas)
                 _projectList.value = allProjects.toList()
+
+                // 更新缓存状态
+                if (page == 1) {
+                    isDataLoaded = true
+                    lastLoadTime = System.currentTimeMillis()
+                }
             }
             is NetResult.Error -> {
                 if (page > 1) {
